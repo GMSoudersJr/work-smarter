@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { fly } from "svelte/transition";
   import type { PageProps } from "./$types";
   import { enhance, applyAction } from "$app/forms";
   import type { SubmitFunction } from "@sveltejs/kit";
@@ -13,10 +14,7 @@
     cancel,
     submitter
   }) => {
-    cancel();
-    const entries = formData.entries();
-    entries.forEach(e => console.log(e));
-    return async ({ result, update }) => {
+    return async ({ result }) => {
       await applyAction(result);
     }
   }
@@ -54,19 +52,19 @@
     </form>
   </section>
 
-  <section id="randomized-list" class="section">
   {#if form?.success}
-    <h2 class="all-caps-600">RANDOMIZED</h2>
-  {/if}
+    <section id="randomized-list" class="section" in:fly={{ x:-200, duration: 500 }}>
+      <h2 class="all-caps-600">RANDOMIZED</h2>
 
-  {#if form?.data}
-    <ol class="regular-font">
-    {#each form.data as randomizedWord}
-      <li class="regular-font">{randomizedWord}</li>
-    {/each}
-    </ol>
+    {#if form?.data}
+      <ol class="regular-font">
+      {#each form.data as randomizedWord}
+        <li class="regular-font">{randomizedWord}</li>
+      {/each}
+      </ol>
+    {/if}
+    </section>
   {/if}
-  </section>
 
 </main>
 
