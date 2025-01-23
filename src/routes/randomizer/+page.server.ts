@@ -69,7 +69,6 @@ export const actions = {
 		}
 
 		const randomizedWords = randomizeWords(allWords);
-		console.table(randomizedWords);
 
 		return {
 			success: true,
