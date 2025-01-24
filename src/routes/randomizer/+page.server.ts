@@ -5,26 +5,26 @@ export const actions = {
 		//TODO Randomize the given list
 		const data = await request.formData();
 
-		const word_1 = data.get('word_1')?.toString();
-		const word_2 = data.get('word_2')?.toString();
-		const word_3 = data.get('word_3')?.toString();
-		const word_4 = data.get('word_4')?.toString();
-		const word_5 = data.get('word_5')?.toString();
-		const word_6 = data.get('word_6')?.toString();
-		const word_7 = data.get('word_7')?.toString();
-		const word_8 = data.get('word_8')?.toString();
-		const word_9 = data.get('word_9')?.toString();
-		const word_10 = data.get('word_10')?.toString();
-		const word_11 = data.get('word_11')?.toString();
-		const word_12 = data.get('word_12')?.toString();
-		const word_13 = data.get('word_13')?.toString();
-		const word_14 = data.get('word_14')?.toString();
-		const word_15 = data.get('word_15')?.toString();
-		const word_16 = data.get('word_16')?.toString();
-		const word_17 = data.get('word_17')?.toString();
-		const word_18 = data.get('word_18')?.toString();
-		const word_19 = data.get('word_19')?.toString();
-		const word_20 = data.get('word_20')?.toString();
+		const word_1 = data.get('word_1')?.toString().trimEnd();
+		const word_2 = data.get('word_2')?.toString().trimEnd();
+		const word_3 = data.get('word_3')?.toString().trimEnd();
+		const word_4 = data.get('word_4')?.toString().trimEnd();
+		const word_5 = data.get('word_5')?.toString().trimEnd();
+		const word_6 = data.get('word_6')?.toString().trimEnd();
+		const word_7 = data.get('word_7')?.toString().trimEnd();
+		const word_8 = data.get('word_8')?.toString().trimEnd();
+		const word_9 = data.get('word_9')?.toString().trimEnd();
+		const word_10 = data.get('word_10')?.toString().trimEnd();
+		const word_11 = data.get('word_11')?.toString().trimEnd();
+		const word_12 = data.get('word_12')?.toString().trimEnd();
+		const word_13 = data.get('word_13')?.toString().trimEnd();
+		const word_14 = data.get('word_14')?.toString().trimEnd();
+		const word_15 = data.get('word_15')?.toString().trimEnd();
+		const word_16 = data.get('word_16')?.toString().trimEnd();
+		const word_17 = data.get('word_17')?.toString().trimEnd();
+		const word_18 = data.get('word_18')?.toString().trimEnd();
+		const word_19 = data.get('word_19')?.toString().trimEnd();
+		const word_20 = data.get('word_20')?.toString().trimEnd();
 
 		const allWords = [
 			word_1,

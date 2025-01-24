@@ -5,8 +5,7 @@
   import { enhance, applyAction } from "$app/forms";
   import type { SubmitFunction } from "@sveltejs/kit";
 
-  let { data, form }: PageProps = $props();
-  console.log(data);
+  let { form }: PageProps = $props();
 
   const useEnhance: SubmitFunction = ({
     formData,
