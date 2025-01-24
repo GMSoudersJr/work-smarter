@@ -47,7 +47,10 @@
           </li>
         {/each}
         </ol>
-        <input type="submit" value="RANDOMIZE" class="all-caps-400"/>
+        <div class="buttons">
+          <input type="submit" value="RANDOMIZE" class="all-caps-400"/>
+          <input type="reset" value="RESET" class="all-caps-400"/>
+        </div>
       </fieldset>
     </form>
   </section>
@@ -85,6 +88,11 @@
     justify-content: center;
     gap: 1rem;
   }
+  .buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
   .form {
     fieldset{
       background-color: #d1d1d1;
@@ -100,7 +108,9 @@
       padding: 0.25rem 0.5rem;
     }
 
-    input[type="submit"] {
+    input[type="submit"],
+    input[type="reset"]
+    {
       width: 100%;
     }
   }
