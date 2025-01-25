@@ -1,4 +1,5 @@
 <script lang="ts">
+  import CopyButton from '$lib/CopyButton.svelte';
   import { fade } from "svelte/transition";
   import { cubicInOut } from "svelte/easing";
   import type { PageProps } from "./$types";
@@ -33,13 +34,14 @@
       class="form"
       use:enhance={useEnhance}
     >
-      <fieldset>
+      <fieldset class="fieldset">
         <legend class="all-caps-400">VOCAB</legend>
         <ol>
         {#each Array.from(Array(20).keys()) as entry}
           <li class="regular-font">
             <input
               class="regular-font"
+              spellcheck="true"
               required
               type="text"
               name={`word_${entry + 1}`}
@@ -56,24 +58,29 @@
   </section>
 
   {#if form?.success}
-    <section
-      id="randomized-list"
-      class="section"
-      in:fade={{ duration: 1000, easing: cubicInOut }}
-      out:fade={{ duration: 500, easing: cubicInOut }}
+    <fieldset
+      class="fieldset"
+      in:fade={{ duration: 500, easing: cubicInOut }}
+      out:fade={{ duration: 1500, easing: cubicInOut }}
     >
-      <h2 class="all-caps-600">RANDOMIZED</h2>
-
-    {#if form?.data}
-      <ol class="regular-font">
-      {#each form.data as randomizedWord}
+      {#if form.data}
+      <legend class="all-caps-400">RANDOMIZED</legend>
+      <ol>
+      {#each form.data as randomizedWord, index}
         <li class="regular-font">
-          {randomizedWord}
+          <input
+            class="regular-font"
+            required
+            type="text"
+            id={`word_${index + 1}`}
+            value={randomizedWord}
+          />
+          <CopyButton id={`word_${index + 1}`} {randomizedWord} />
         </li>
       {/each}
       </ol>
-    {/if}
-    </section>
+      {/if}
+    </fieldset>
   {/if}
 
 </main>
@@ -83,30 +90,20 @@
     text-align: center;
       color: #663399
   }
+
   .main {
     display: flex;
     justify-content: center;
     gap: 1rem;
   }
+
   .buttons {
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
   }
-  .form {
-    fieldset{
-      background-color: #d1d1d1;
-    }
-    legend {
-      color: #663399
-    }
-    li {
-      padding-bottom: 0.5rem;
-    }
 
-    input {
-      padding: 0.25rem 0.5rem;
-    }
+  .form {
 
     input[type="submit"],
     input[type="reset"]
@@ -114,14 +111,16 @@
       width: 100%;
     }
   }
-  .section#randomized-list {
-    h2 {
-      margin-top: 0;
+
+  .fieldset {
+    legend {
       color: #663399
     }
-
     li {
       padding-bottom: 0.5rem;
+    }
+    input {
+      padding: 0.25rem 0.5rem;
     }
   }
 </style>
