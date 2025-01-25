@@ -1,25 +1,10 @@
 <script lang="ts">
-  import CopyButton from '$lib/CopyButton.svelte';
-  import { fade } from "svelte/transition";
-  import { cubicInOut } from "svelte/easing";
+  import VocabForm from '$lib/VocabForm.svelte';
+  import RandomizedFieldset from '$lib/RandomizedFieldset.svelte';
   import type { PageProps } from "./$types";
-  import { enhance, applyAction } from "$app/forms";
-  import type { SubmitFunction } from "@sveltejs/kit";
 
-  let { data, form }: PageProps = $props();
-
-  const useEnhance: SubmitFunction = ({
-    formData,
-    formElement,
-    action,
-    cancel,
-    submitter
-  }) => {
-    return async ({ result }) => {
-      await applyAction(result);
-    }
-  }
-
+  let { data }: PageProps = $props();
+  let randomizedWords = $state([]);
 </script>
 
 
@@ -30,60 +15,13 @@
 <main class="main">
 
   <section id="vocab-list" class="section">
-    <form
-      method="POST"
-      action="?/randomize"
-      class="form"
-      use:enhance={useEnhance}
-    >
-      <fieldset class="fieldset">
-        <legend class="all-caps-400">VOCAB</legend>
-        <ol>
-        {#each Array.from(Array(20).keys()) as entry}
-          <li class="regular-font">
-            <input
-              class="regular-font"
-              spellcheck="true"
-              required
-              type="text"
-              name={`word_${entry + 1}`}
-            />
-          </li>
-        {/each}
-        </ol>
-        <div class="buttons">
-          <input type="submit" value="RANDOMIZE" class="all-caps-400"/>
-          <input type="reset" value="RESET" class="all-caps-400"/>
-        </div>
-      </fieldset>
-    </form>
+    <VocabForm bind:randomizedWords />
   </section>
 
-  {#if form?.success}
-    <fieldset
-      class="fieldset"
-      transition:fade={{ duration: 500, easing: cubicInOut }}
-    >
-      {#if form.data}
-      <legend class="all-caps-400">RANDOMIZED</legend>
-      <ol
-        transition:fade={{ duration: 500, easing: cubicInOut }}
-      >
-      {#each form.data as randomizedWord, index}
-        <li class="regular-font">
-          <input
-            class="regular-font"
-            required
-            type="text"
-            id={`word_${index + 1}`}
-            value={randomizedWord}
-          />
-          <CopyButton id={`word_${index + 1}`} {randomizedWord} />
-        </li>
-      {/each}
-      </ol>
-      {/if}
-    </fieldset>
+  {#if randomizedWords.length > 0}
+    {#key randomizedWords}
+      <RandomizedFieldset {randomizedWords} />
+    {/key}
   {/if}
 
 </main>
@@ -98,32 +36,5 @@
     display: flex;
     justify-content: center;
     gap: 1rem;
-  }
-
-  .buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-  }
-
-  .form {
-
-    input[type="submit"],
-    input[type="reset"]
-    {
-      width: 100%;
-    }
-  }
-
-  .fieldset {
-    legend {
-      color: #663399
-    }
-    li {
-      padding-bottom: 0.5rem;
-    }
-    input {
-      padding: 0.25rem 0.5rem;
-    }
   }
 </style>

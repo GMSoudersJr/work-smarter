@@ -1,5 +1,6 @@
 <script lang="ts">
   import { CheckIcon, CopyIcon, type Icon as IconType } from "lucide-svelte";
+	import {fade, scale} from "svelte/transition";
 
   type CopyButton = {
     name: string;
@@ -7,16 +8,11 @@
     copiedIcon: typeof IconType
   };
 
-  const copyButtons: CopyButton[] = [
-    {
-        name: 'copyButton',
-        copyIcon: CopyIcon,
-        copiedIcon: CheckIcon
-      }
-  ];
-
-  let { id, randomizedWord } = $props();
-  let copied = $state(false);
+  const copyButton: CopyButton = {
+    name: 'copyButton',
+    copyIcon: CopyIcon,
+    copiedIcon: CheckIcon
+  } ;
 
   async function handleClick() {
     const inputElement = document.getElementById(id);
@@ -28,26 +24,34 @@
       console.error(error)
     }
   }
+
+  let { id, randomizedWord } = $props();
+  let copied = $state(false);
+
   const size = '1em';
   const color = '#663399';
   const strokeWidth = 4;
-</script>
 
-{#each copyButtons as copyButton}
-  {@const CopyIcon = copyButton.copyIcon}
-  {@const CopiedIcon = copyButton.copiedIcon}
-  <button
-    class="button"
-    title={`Copy ${randomizedWord} to clipboard`}
-    onclick={handleClick}
-  >
-  {#if copied}
-    <CopiedIcon {size} {color} {strokeWidth}/>
-  {:else}
-    <CopyIcon {size} />
-  {/if}
-  </button>
-{/each}
+</script>
+  {#key copyButton}
+    <button
+      class="button"
+      title={`Copy ${randomizedWord} to clipboard`}
+      onclick={handleClick}
+    >
+      {#key copied}
+        <div in:scale>
+      {#if copied}
+        {@const CopiedIcon = copyButton.copiedIcon}
+        <CopiedIcon {size} {color} {strokeWidth}/>
+      {:else}
+        {@const CopyIcon = copyButton.copyIcon}
+        <CopyIcon {size} />
+      {/if}
+        </div>
+      {/key}
+    </button>
+  {/key}
 
 <style>
   .button {

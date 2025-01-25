@@ -1,8 +1,9 @@
 import type { Actions } from './$types';
+import { randomizeWords } from '$lib/helperFunctions';
 
 export const actions = {
 	randomize: async ({ request }) => {
-		//TODO Randomize the given list
+
 		const data = await request.formData();
 
 		const word_1 = data.get('word_1')?.toString().trimEnd();
@@ -48,25 +49,6 @@ export const actions = {
 			word_19,
 			word_20
 		];
-
-		function getRandomInteger(max: number): number {
-			return Math.floor(Math.random() * max);
-		}
-
-
-		function randomizeWords(listOfWords: (string | undefined)[]): (string | undefined)[] {
-			const result: (string | undefined)[] = [];
-
-			function updateLists() {
-				const randomIndexNumber = getRandomInteger(listOfWords.length);
-				const randomWord = listOfWords.splice(randomIndexNumber, 1)[0];
-				result.push(randomWord);
-			}
-
-			while (listOfWords.length > 0) updateLists();
-
-			return result;
-		}
 
 		const randomizedWords = randomizeWords(allWords);
 
