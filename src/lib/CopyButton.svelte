@@ -1,6 +1,6 @@
 <script lang="ts">
   import { CheckIcon, CopyIcon, type Icon as IconType } from "lucide-svelte";
-	import {fade, scale} from "svelte/transition";
+	import { scale } from "svelte/transition";
 
   type CopyButton = {
     name: string;
