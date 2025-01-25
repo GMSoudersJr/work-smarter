@@ -6,7 +6,7 @@
   import { enhance, applyAction } from "$app/forms";
   import type { SubmitFunction } from "@sveltejs/kit";
 
-  let { form }: PageProps = $props();
+  let { data, form }: PageProps = $props();
 
   const useEnhance: SubmitFunction = ({
     formData,
@@ -19,10 +19,12 @@
       await applyAction(result);
     }
   }
+
 </script>
 
+
 <header class="header">
-  <h1 class="all-caps-800">VOCAB RANDOMIZER</h1>
+  <h2 class="all-caps-800">{data.header}</h2>
 </header>
 
 <main class="main">
@@ -60,12 +62,13 @@
   {#if form?.success}
     <fieldset
       class="fieldset"
-      in:fade={{ duration: 500, easing: cubicInOut }}
-      out:fade={{ duration: 1500, easing: cubicInOut }}
+      transition:fade={{ duration: 500, easing: cubicInOut }}
     >
       {#if form.data}
       <legend class="all-caps-400">RANDOMIZED</legend>
-      <ol>
+      <ol
+        transition:fade={{ duration: 500, easing: cubicInOut }}
+      >
       {#each form.data as randomizedWord, index}
         <li class="regular-font">
           <input
