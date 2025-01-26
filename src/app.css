@@ -1,6 +1,15 @@
+* {
+  margin: 0;
+}
+
+:root {
+  --purple: #663399;
+}
+
 body {
   background-color: #f5f5f5;
 }
+
 .all-caps-400 {
   font-family: "Roboto Condensed", serif;
   font-optical-sizing: auto;

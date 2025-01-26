@@ -3,6 +3,7 @@
 </script>
 
 <input
+  id={`word-${index + 1}`}
   type="text"
   class="regular-font vocab-input"
   spellcheck="true"
