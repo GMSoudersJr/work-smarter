@@ -1,28 +1,26 @@
 <script lang="ts">
-  import VocabForm from '$lib/VocabForm.svelte';
-  import RandomizedFieldset from '$lib/RandomizedFieldset.svelte';
+  import { WordList, WordInput } from "$lib/components";
   import type { PageProps } from "./$types";
+  import type { TWord } from "$lib/types";
 
   let { data }: PageProps = $props();
-  let randomizedWords = $state([]);
+  let entries: TWord[] = $state([]);
 </script>
 
 <header class="header">
   <h2 class="all-caps-800">{data.header}</h2>
 </header>
 
-<main class="main">
+<main class="main-grid">
+  <WordInput bind:entries />
+  <div id="original">
+    <h2>original</h2>
+    <WordList {entries}/>
+  </div>
 
-  <section id="vocab-list" class="section">
-    <VocabForm bind:randomizedWords />
-  </section>
-
-  {#if randomizedWords.length > 0}
-    {#key randomizedWords}
-      <RandomizedFieldset {randomizedWords} />
-    {/key}
-  {/if}
-
+  <div id="randomized">
+    <h2>randomized</h2>
+  </div>
 </main>
 
 <style>
@@ -31,9 +29,12 @@
     color: var(--purple);
   }
 
-  .main {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
+  .main-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 1em;
+    max-width: 36em;
+    margin: 0 auto;
   }
+
 </style>
