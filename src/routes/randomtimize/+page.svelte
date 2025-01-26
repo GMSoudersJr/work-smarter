@@ -1,11 +1,11 @@
 <script lang="ts">
-  import { WordList, WordInput } from "$lib/components";
+  import { WordList, WordInput, RandomizedWordList } from "$lib/components";
   import type { PageProps } from "./$types";
   import type { TWord } from "$lib/types";
 
   let { data }: PageProps = $props();
   let entries: TWord[] = $state([]);
-  const randomize = true;
+  let randomizedEntries: TWord[] = $state([]);
 </script>
 
 <header class="header">
@@ -13,7 +13,7 @@
 </header>
 
 <main class="main-grid">
-  <WordInput bind:entries />
+  <WordInput bind:entries bind:randomizedEntries />
   <div id="original">
     <h3 class="all-caps-200">ORIGINAL</h3>
     <WordList {entries}/>
@@ -21,7 +21,7 @@
 
   <div id="randomized">
     <h3 class="all-caps-200">RANDOMIZED</h3>
-    <WordList {entries} {randomize} />
+    <RandomizedWordList {randomizedEntries}/>
   </div>
 </main>
 

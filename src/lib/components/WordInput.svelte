@@ -1,13 +1,24 @@
 <script lang="ts">
-  import {getRandomInteger} from '../helperFunctions';
   import type { TWord } from '$lib/types';
+	import { randomizeEntries } from '$lib/utils';
 
-  let { entries = $bindable() } = $props();
+  class Word {
+    id = $state();
+    word = $state();
+    originalIndex = $state();
+    randomizedIndex = $state();
+    isCopied = $state(false);
+
+    constructor(word: string) {
+      this.word = word;
+    }
+  }
+
+  let { entries = $bindable(), randomizedEntries = $bindable() } = $props();
   let uid = entries.length + 1;
 
   function handleKeydown(event: KeyboardEvent) {
     if (event.key !== 'Enter') return;
-    const randomNumber = getRandomInteger(entries.length);
     const inputElement = document.getElementsByTagName("input").namedItem('word-input');
     if (inputElement) {
       if (inputElement.value === '') return;
@@ -19,7 +30,13 @@
         isCopied: false,
       };
 
-      entries.push(currentWord);
+      const newEntry = new Word(inputElement.value);
+      newEntry.id = `${inputElement.value}${uid++}`;
+      newEntry.originalIndex = entries.length;
+      newEntry.randomizedIndex = 0;
+
+      entries.push(newEntry);
+      randomizedEntries = randomizeEntries(entries.slice());
 
       inputElement.value = '';
     }

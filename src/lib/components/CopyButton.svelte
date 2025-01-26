@@ -1,0 +1,62 @@
+<script lang="ts">
+  import { CheckIcon, CopyIcon, type Icon as IconType } from "lucide-svelte";
+	import { scale } from "svelte/transition";
+
+  type CopyButton = {
+    name: string;
+    copyIcon: typeof IconType;
+    copiedIcon: typeof IconType
+  };
+
+  const copyButton: CopyButton = {
+    name: 'copyButton',
+    copyIcon: CopyIcon,
+    copiedIcon: CheckIcon
+  } ;
+
+  async function handleClick() {
+    const inputElement = document.getElementById(id);
+    inputElement?.focus();
+    try {
+      await navigator.clipboard.writeText(randomizedWord);
+      copied = true;
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  let { id, randomizedWord } = $props();
+  let copied = $state(false);
+
+  const size = '1em';
+  const color = '#663399';
+  const strokeWidth = 4;
+
+</script>
+  {#key copyButton}
+    <button
+      class="button"
+      title={`Copy ${randomizedWord} to clipboard`}
+      onclick={handleClick}
+    >
+      {#key copied}
+        <div in:scale>
+      {#if copied}
+        {@const CopiedIcon = copyButton.copiedIcon}
+        <CopiedIcon {size} {color} {strokeWidth}/>
+      {:else}
+        {@const CopyIcon = copyButton.copyIcon}
+        <CopyIcon {size} />
+      {/if}
+        </div>
+      {/key}
+    </button>
+  {/key}
+
+<style>
+  .button {
+    border: none;
+    background-color: #f5f5f5;
+  }
+</style>
+

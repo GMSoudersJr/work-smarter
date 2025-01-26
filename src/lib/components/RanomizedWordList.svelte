@@ -1,12 +1,12 @@
 <script lang="ts">
   import { send, receive } from '$lib/transition';
 	import {flip} from 'svelte/animate';
-	import RemoveButton from './RemoveButton.svelte';
-  let { entries } = $props();
+	import CopyButton from './CopyButton.svelte';
+  let { randomizedEntries } = $props();
 </script>
 
 <ul class="word-list">
-  {#each entries as entry, index (entry.id)}
+  {#each randomizedEntries as entry, index (entry.id)}
     <li
       in:receive={{ key: entry.id }}
       out:send={{ key: entry.id }}
@@ -15,7 +15,7 @@
       <div class="word-grid">
         <p id="word-index" class="regular-font">{index + 1}.</p>
         <p id="word-text" class="regular-font">{entry.word}</p>
-        <RemoveButton {entries} {entry}/>
+        <CopyButton randomizedWord={entry.word} id={entry.id} />
       </div>
     </li>
   {/each}
