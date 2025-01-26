@@ -10,6 +10,13 @@ body {
   background-color: #f5f5f5;
 }
 
+.all-caps-200 {
+  font-family: "Roboto Condensed", serif;
+  font-optical-sizing: auto;
+  font-weight: 200;
+  font-style: normal;
+}
+
 .all-caps-400 {
   font-family: "Roboto Condensed", serif;
   font-optical-sizing: auto;

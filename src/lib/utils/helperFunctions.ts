@@ -1,17 +1,24 @@
+import type {TWord} from "$lib/types";
+
+export function removeWordFromList(word: TWord, list: TWord[]): void {
+	const index = list.indexOf(word);
+	list.splice(index, 1);
+}
+
 export function getRandomInteger(max: number): number {
 	return Math.floor(Math.random() * max);
 };
 
-export function randomizeWords(listOfWords: (string | undefined)[]): (string | undefined)[] {
-	const result: (string | undefined)[] = [];
+export function randomizeEntries(entries: TWord[]): TWord[] {
+	const result: TWord[] = [];
 
 	function updateLists() {
-		const randomIndexNumber = getRandomInteger(listOfWords.length);
-		const randomWord = listOfWords.splice(randomIndexNumber, 1)[0];
+		const randomIndexNumber = getRandomInteger(entries.length);
+		const randomWord = entries.splice(randomIndexNumber, 1)[0];
 		result.push(randomWord);
 	}
 
-	while (listOfWords.length > 0) updateLists();
+	while (entries.length > 0) updateLists();
 
 	return result;
 };

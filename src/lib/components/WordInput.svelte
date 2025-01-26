@@ -10,8 +10,9 @@
     const randomNumber = getRandomInteger(entries.length);
     const inputElement = document.getElementsByTagName("input").namedItem('word-input');
     if (inputElement) {
+      if (inputElement.value === '') return;
       const currentWord: TWord = {
-        id: uid++,
+        id: `${inputElement.value}${uid++}`,
         word: inputElement.value,
         originalIndex: entries.length,
         randomizedIndex: 0,

@@ -1,5 +1,5 @@
 export type TWord = {
-    id: number;
+    id: string;
     word: string;
     originalIndex: number;
     randomizedIndex: number;

@@ -5,6 +5,7 @@
 
   let { data }: PageProps = $props();
   let entries: TWord[] = $state([]);
+  const randomize = true;
 </script>
 
 <header class="header">
@@ -14,12 +15,13 @@
 <main class="main-grid">
   <WordInput bind:entries />
   <div id="original">
-    <h2>original</h2>
+    <h3 class="all-caps-200">ORIGINAL</h3>
     <WordList {entries}/>
   </div>
 
   <div id="randomized">
-    <h2>randomized</h2>
+    <h3 class="all-caps-200">RANDOMIZED</h3>
+    <WordList {entries} {randomize} />
   </div>
 </main>
 
@@ -28,11 +30,10 @@
     text-align: center;
     color: var(--purple);
   }
-
   .main-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    column-gap: 1em;
+    column-gap: 2em;
     max-width: 36em;
     margin: 0 auto;
   }
