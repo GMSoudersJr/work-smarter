@@ -23,12 +23,6 @@
   <meta name="description" content={page.data.description}/>
 </svelte:head>
 
-
-<nav class="navbar">
-  <a href="/randomizer" class="regular-font">Randomizer</a>
-  <a href="/randomtimize" class="regular-font">Randomtimize</a>
-</nav>
-
 <h1 class="all-caps-800 header">
   <a href="/">
     WORK SMARTER
