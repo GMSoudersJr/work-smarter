@@ -46,6 +46,7 @@
 <style>
   .header {
     text-align: center;
+    margin-bottom: 2rem;
 
     a {
       text-decoration: none;

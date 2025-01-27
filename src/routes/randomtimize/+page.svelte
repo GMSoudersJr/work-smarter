@@ -1,5 +1,10 @@
 <script lang="ts">
-  import { WordList, WordInput, RandomizedWordList, ResetButton } from "$lib/components";
+  import {
+    WordList,
+    WordInput,
+    RandomizedWordList,
+    ResetButton
+  } from "$lib/components";
   import type { PageProps } from "./$types";
   import type { TWord } from "$lib/types";
 	import {randomizeEntries} from "$lib/utils";
@@ -9,11 +14,11 @@
   let randomizedEntries: TWord[] = $derived(randomizeEntries(entries.slice()));
 </script>
 
-<header class="header">
-  <h2 class="all-caps-800">{data.header}</h2>
-</header>
+<section class="page-grid">
+  <header class="header">
+    <h2 class="all-caps-800">{data.header}</h2>
+  </header>
 
-<section class="grid">
   <WordInput bind:entries />
 
   <div id="original-list">
@@ -38,17 +43,19 @@
 </section>
 
 <style>
-  .header {
-    text-align: center;
-    color: var(--purple);
-  }
-
-  .grid {
+  .page-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     column-gap: 2em;
+    row-gap: 1.5rem;
     max-width: 36rem;
     margin: 0 auto;
+  }
+
+  .header {
+    text-align: center;
+    color: var(--purple);
+    grid-column: 1/3;
   }
 
   .column-header {

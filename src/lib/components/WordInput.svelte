@@ -1,5 +1,5 @@
 <script lang="ts">
-
+  import { AsteriskIcon, type Icon as IconType } from "lucide-svelte";
   class Word {
     id = $state();
     word = $state();
@@ -11,6 +11,20 @@
       this.word = word;
     }
   }
+
+  type InputLabel = {
+    label: string;
+    icon: typeof IconType;
+    iconSize: string;
+    iconColor: string;
+  };
+
+  const inputLabel: InputLabel = {
+    label: `Type a word, press Enter`,
+    icon: AsteriskIcon,
+    iconSize: '1em',
+    iconColor: 'var(--yellow)'
+  };
 
   let { entries = $bindable() } = $props();
   let uid = entries.length + 1;
@@ -32,25 +46,46 @@
     }
   }
 
+
 </script>
 
-<input
-  id="word-input"
-  class="input regular-font"
-  type="text"
-  placeholder="type word, press enter"
-  onkeydown={handleKeydown}
-/>
+<div class="input-wrapper">
+  {#key inputLabel}
+    {#if inputLabel}
+      {@const Icon = inputLabel.icon}
+      {@const size = inputLabel.iconSize}
+      {@const color = inputLabel.iconColor}
+    <label class="input-label regular-font" for="word-input" >
+      <Icon {size} {color} />
+      {inputLabel.label}
+    </label>
+    {/if}
+  {/key}
+    <input
+      id="word-input"
+      class="input regular-font"
+      type="text"
+      onkeydown={handleKeydown}
+    />
+</div>
 
 
 <style>
-  .input {
+  .input-wrapper {
     grid-column: 1/3;
+    display: flex;
+    flex-direction: column;
+  }
+  .input-label {
+    font-size: 0.75rem;
+    display: flex;
+    align-items: center;
+  }
+  .input {
     border: 1px solid #d1d1d1;
     border-radius: var(--border-radius);
     font-size: 1.4em;
     padding: 0.5em;
-    margin: 0.5rem 0 1rem 0;
   }
 </style>
 

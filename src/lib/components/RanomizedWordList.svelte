@@ -1,7 +1,7 @@
 <script lang="ts">
   import { send, receive } from '$lib/transition';
+  import { CopyButton } from '$lib/components';
 	import {flip} from 'svelte/animate';
-	import CopyButton from './CopyButton.svelte';
   let { randomizedEntries } = $props();
 </script>
 
