@@ -18,6 +18,7 @@
   const strokeWidth = 1;
 
   function handleClick() {
+    console.log("need to shuffle the list");
     randomizedEntries = randomizeEntries(randomizedEntries);
   }
 </script>

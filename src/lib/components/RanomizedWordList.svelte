@@ -30,6 +30,7 @@
     li {
       border: 1px solid #d1d1d1;
       margin: 0.5rem 0;
+      border-radius: var(--border-radius);
     }
   }
 

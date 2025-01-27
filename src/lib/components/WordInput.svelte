@@ -47,6 +47,7 @@
   .input {
     grid-column: 1/3;
     border: 1px solid #d1d1d1;
+    border-radius: var(--border-radius);
     font-size: 1.4em;
     padding: 0.5em;
     margin: 0.5rem 0 1rem 0;

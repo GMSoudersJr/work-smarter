@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { removeWordFromList } from "$lib/utils";
-  import { Trash2Icon, type Icon as IconType } from "lucide-svelte";
+  import { XIcon, type Icon as IconType } from "lucide-svelte";
 
   type RemoveButton = {
     title: string;
@@ -9,7 +9,7 @@
 
   const removeButton: RemoveButton = {
     title: 'Remove this word',
-    icon: Trash2Icon,
+    icon: XIcon,
   }
 
   let { entry, entries } = $props();
@@ -38,6 +38,8 @@
     height: 100%;
     display: flex;
     border: none;
+    border-top-right-radius: var(--border-radius);
+    border-bottom-right-radius: var(--border-radius);
     justify-content: center;
     align-items: center;
     font-size: 1rem;

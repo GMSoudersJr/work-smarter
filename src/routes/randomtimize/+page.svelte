@@ -31,7 +31,6 @@
     {#if randomizedEntries.length > 0}
       <div class="column-header">
         <h3 class="all-caps-200">RANDOMIZED</h3>
-        <ShuffleButton {randomizedEntries}/>
       </div>
     {/if}
     <RandomizedWordList {randomizedEntries} />

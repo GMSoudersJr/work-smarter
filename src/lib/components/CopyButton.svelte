@@ -58,6 +58,8 @@
     height: 100%;
     display: flex;
     border: none;
+    border-top-right-radius: var(--border-radius);
+    border-bottom-right-radius: var(--border-radius);
     justify-content: center;
     align-items: center;
     font-size: 1rem;

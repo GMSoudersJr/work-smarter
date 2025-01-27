@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { RotateCcwIcon, type Icon as IconType } from "lucide-svelte";
+  import { Trash2Icon, type Icon as IconType } from "lucide-svelte";
 
   type ResetButton = {
     title: string;
@@ -8,7 +8,7 @@
 
   const resetButton: ResetButton = {
     title: 'Reset list',
-    icon: RotateCcwIcon
+    icon: Trash2Icon
   }
 
   let { entries = $bindable() } = $props();
@@ -44,7 +44,7 @@
     border-radius: 50%;
   }
   .button:active {
-    transform: rotateZ(-30deg);
+    transform: rotateZ(-15deg);
     }
 </style>
 
