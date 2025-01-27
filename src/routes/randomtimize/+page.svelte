@@ -15,9 +15,9 @@
 </script>
 
 <section class="page-grid">
-  <header class="header">
+  <div class="header">
     <h2 class="all-caps-800">{data.header}</h2>
-  </header>
+  </div>
 
   <WordInput bind:entries />
 
