@@ -18,6 +18,8 @@
 
   function handleClick() {
     entries = [];
+    const inputElement = document.getElementsByTagName('input').namedItem('word-input');
+    if( inputElement ) inputElement.focus();
   }
 </script>
 
