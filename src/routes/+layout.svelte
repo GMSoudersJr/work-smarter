@@ -30,7 +30,7 @@
 
 <h1 class="all-caps-800 header">WORK SMARTER</h1>
 
-<main class="main">
+<main>
   {@render children()}
 </main>
 
@@ -38,10 +38,6 @@
   .header {
     text-align: center;
     color: var(--purple);
-  }
-
-  .main {
-    margin: 0.5rem;
   }
 </style>
 
