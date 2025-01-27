@@ -3,7 +3,6 @@
   import type { PageProps } from "./$types";
   import type { TWord } from "$lib/types";
 	import {randomizeEntries} from "$lib/utils";
-	import ShuffleButton from "$lib/components/ShuffleButton.svelte";
 
   let { data }: PageProps = $props();
   let entries: TWord[] = $state([]);

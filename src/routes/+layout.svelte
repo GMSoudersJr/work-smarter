@@ -20,6 +20,7 @@
 
 <svelte:head>
   <title>{page.data.title}</title>
+  <meta name="description" content={page.data.description}/>
 </svelte:head>
 
 
@@ -28,7 +29,11 @@
   <a href="/randomtimize" class="regular-font">Randomtimize</a>
 </nav>
 
-<h1 class="all-caps-800 header">WORK SMARTER</h1>
+<h1 class="all-caps-800 header">
+  <a href="/">
+    WORK SMARTER
+  </a>
+</h1>
 
 <main>
   {@render children()}
@@ -38,6 +43,10 @@
   .header {
     text-align: center;
     color: var(--purple);
+
+    a {
+      text-decoration: none;
+    }
   }
 </style>
 
