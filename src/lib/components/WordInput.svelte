@@ -1,6 +1,4 @@
 <script lang="ts">
-  import type { TWord } from '$lib/types';
-	import { randomizeEntries } from '$lib/utils';
 
   class Word {
     id = $state();
@@ -14,7 +12,7 @@
     }
   }
 
-  let { entries = $bindable(), randomizedEntries = $bindable() } = $props();
+  let { entries = $bindable() } = $props();
   let uid = entries.length + 1;
 
   function handleKeydown(event: KeyboardEvent) {
@@ -22,13 +20,6 @@
     const inputElement = document.getElementsByTagName("input").namedItem('word-input');
     if (inputElement) {
       if (inputElement.value === '') return;
-      const currentWord: TWord = {
-        id: `${inputElement.value}${uid++}`,
-        word: inputElement.value,
-        originalIndex: entries.length,
-        randomizedIndex: 0,
-        isCopied: false,
-      };
 
       const newEntry = new Word(inputElement.value);
       newEntry.id = `${inputElement.value}${uid++}`;
@@ -36,7 +27,6 @@
       newEntry.randomizedIndex = 0;
 
       entries.push(newEntry);
-      randomizedEntries = randomizeEntries(entries.slice());
 
       inputElement.value = '';
     }
@@ -46,7 +36,7 @@
 
 <input
   id="word-input"
-  class="input"
+  class="input regular-font"
   type="text"
   placeholder="type word, press enter"
   onkeydown={handleKeydown}
@@ -56,10 +46,10 @@
 <style>
   .input {
     grid-column: 1/3;
-    border: 1px solid green;
+    border: 1px solid #d1d1d1;
     font-size: 1.4em;
     padding: 0.5em;
-    margin: 0 0 1rem 0;
+    margin: 0.5rem 0 1rem 0;
   }
 </style>
 

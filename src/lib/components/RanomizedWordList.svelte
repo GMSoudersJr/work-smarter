@@ -26,6 +26,11 @@
     list-style: none;
     margin: 0;
     padding: 0;
+
+    li {
+      border: 1px solid #d1d1d1;
+      margin: 0.5rem 0;
+    }
   }
 
   .word-grid {

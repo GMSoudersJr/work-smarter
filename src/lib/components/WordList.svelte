@@ -2,7 +2,7 @@
   import { send, receive } from '$lib/transition';
 	import {flip} from 'svelte/animate';
 	import RemoveButton from './RemoveButton.svelte';
-  let { entries } = $props();
+  let { entries = $bindable() } = $props();
 </script>
 
 <ul class="word-list">
@@ -26,6 +26,11 @@
     list-style: none;
     margin: 0;
     padding: 0;
+
+    li {
+      border: 1px solid #d1d1d1;
+      margin: 0.5rem 0;
+    }
   }
 
   .word-grid {

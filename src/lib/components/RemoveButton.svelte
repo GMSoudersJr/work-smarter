@@ -1,5 +1,5 @@
 <script lang="ts">
-	import {removeWordFromList} from "$lib/utils";
+	import { removeWordFromList } from "$lib/utils";
   import { Trash2Icon, type Icon as IconType } from "lucide-svelte";
 
   type RemoveButton = {
@@ -17,12 +17,15 @@
   async function handleClick() {
     removeWordFromList(entry, entries);
   }
+
   const size = '1em';
 </script>
 
 <button
-  onclick={handleClick}
   class="button"
+  type="button"
+  title={`Remove "${entry.word}"`}
+  onclick={handleClick}
 >
   {#if removeButton}
     {@const Icon = removeButton.icon}
@@ -32,9 +35,15 @@
 
 <style>
   .button {
+    height: 100%;
     display: flex;
+    border: none;
     justify-content: center;
     align-items: center;
+    font-size: 1rem;
+  }
+  .button:hover {
+    color: var(--purple);
   }
 </style>
 

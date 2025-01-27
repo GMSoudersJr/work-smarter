@@ -15,7 +15,6 @@ export function randomizeEntries(entries: TWord[]): TWord[] {
 	function updateLists() {
 		const randomIndexNumber = getRandomInteger(entries.length);
 		const randomEntry = entries.splice(randomIndexNumber, 1)[0];
-		console.log(randomEntry);
 		result.push(randomEntry);
 	}
 

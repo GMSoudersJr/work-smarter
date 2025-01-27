@@ -36,7 +36,7 @@
   {#key copyButton}
     <button
       class="button"
-      title={`Copy ${randomizedWord} to clipboard`}
+      title={`Copy "${randomizedWord}" to clipboard`}
       onclick={handleClick}
     >
       {#key copied}
@@ -55,8 +55,16 @@
 
 <style>
   .button {
+    height: 100%;
+    display: flex;
     border: none;
-    background-color: #f5f5f5;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+  }
+
+  .button:hover {
+    color: var(--purple);
   }
 </style>
 
