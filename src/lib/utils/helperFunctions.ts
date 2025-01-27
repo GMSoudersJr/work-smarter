@@ -22,4 +22,3 @@ export function randomizeEntries(entries: TWord[]): TWord[] {
 
 	return result;
 };
-

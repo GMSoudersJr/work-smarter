@@ -78,6 +78,7 @@
   }
   .input-label {
     font-size: 0.75rem;
+    font-weight: 300;
     display: flex;
     align-items: center;
   }
