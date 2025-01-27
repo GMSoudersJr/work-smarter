@@ -36,10 +36,10 @@
 <style>
   .header {
     text-align: center;
-    color: var(--purple);
 
     a {
       text-decoration: none;
+      color: var(--purple);
     }
   }
 </style>
