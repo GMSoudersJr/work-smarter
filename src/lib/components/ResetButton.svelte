@@ -1,4 +1,5 @@
 <script lang="ts">
+	import {focusOnInputElement} from '$lib/utils';
 	import { Trash2Icon, type Icon as IconType } from 'lucide-svelte';
 
 	type ResetButton = {
@@ -18,8 +19,7 @@
 
 	function handleClick() {
 		entries = [];
-		const inputElement = document.getElementsByTagName('input').namedItem('word-input');
-		if (inputElement) inputElement.focus();
+		focusOnInputElement();
 	}
 </script>
 

@@ -22,3 +22,7 @@ export function randomizeEntries(entries: TWord[]): TWord[] {
 
 	return result;
 }
+
+export function focusOnInputElement() {
+	document.getElementsByTagName('input').namedItem('word-input')?.focus();
+}

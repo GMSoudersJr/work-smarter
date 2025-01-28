@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { removeWordFromList } from '$lib/utils';
+	import { focusOnInputElement, removeWordFromList } from '$lib/utils';
 	import { XIcon, type Icon as IconType } from 'lucide-svelte';
 
 	type RemoveButton = {
@@ -16,6 +16,7 @@
 
 	async function handleClick() {
 		removeWordFromList(entry, entries);
+		focusOnInputElement();
 	}
 
 	const size = '1em';
