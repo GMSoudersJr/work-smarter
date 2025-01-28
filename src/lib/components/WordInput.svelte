@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { AsteriskIcon, type Icon as IconType } from 'lucide-svelte';
+	import {WordCount} from '$lib/components';
 	class Word {
 		id = $state();
 		word = $state();
@@ -28,6 +29,7 @@
 
 	let { entries = $bindable() } = $props();
 	let uid = entries.length + 1;
+	let wordCount = $derived(entries.length);
 
 	function handleKeydown(event: KeyboardEvent) {
 		if (event.key !== 'Enter') return;
@@ -60,6 +62,7 @@
 		{/if}
 	{/key}
 	<input id="word-input" class="input regular-font" type="text" onkeydown={handleKeydown} />
+	<WordCount {wordCount} />
 </div>
 
 <style>
@@ -72,6 +75,9 @@
 		font-size: 0.75rem;
 		font-weight: 300;
 		display: flex;
+		display: grid;
+		grid-template-columns: min-content max-content;
+		column-gap: 0.125rem;
 		align-items: center;
 	}
 	.input {

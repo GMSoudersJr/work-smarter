@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { type Icon as IconType } from 'lucide-svelte';
 
-	type NavCard = {
+	type NavCardProps = {
 		linkText: string;
 		href: string;
 		description: string;
@@ -11,13 +11,21 @@
 		iconColor: string;
 	};
 
-	let { icon1, icon2, iconSize, description, iconColor, href, linkText }: NavCard = $props();
+	let {
+		icon1,
+		icon2,
+		iconSize,
+		description,
+		iconColor,
+		href,
+		linkText
+	}: NavCardProps = $props();
+
 </script>
 
 <div class="nav-card">
 	{#if href}
 		{@const Icon1 = icon1}
-		{@const Icon2 = icon2}
 		{@const size = iconSize}
 		{@const color = iconColor}
 		<a {href} class="link">
@@ -27,7 +35,10 @@
 		</a>
 		<p class="regular-font description">{description}</p>
 		<Icon1 {size} {color} />
-		<Icon2 {size} {color} />
+		{#if icon2}
+			{@const Icon2 = icon2}
+			<Icon2 {size} {color} />
+		{/if}
 	{/if}
 </div>
 

@@ -36,6 +36,7 @@
 			<NavCard {description} {icon1} {icon2} {href} {linkText} {iconSize} {iconColor} />
 		{/each}
 	</nav>
+
 </section>
 
 <style>
