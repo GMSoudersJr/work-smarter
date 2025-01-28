@@ -1,5 +1,7 @@
 <script lang="ts">
 	import { WholeWordIcon, type Icon as IconType } from "lucide-svelte";
+	import {bounceIn, bounceInOut, bounceOut, quadInOut} from "svelte/easing";
+	import {blur, fade, fly, scale, slide} from "svelte/transition";
 
 	type WordCountProps = {
 		wordCount: number;
@@ -25,20 +27,30 @@
 
 </script>
 
-{#key data}
-	<div class="word-count-wrapper">
-	{#if wordCount}
-		{@const Icon = data.icon}
-		{@const { strokeWidth, iconSize: size, iconColor: color } = data}
+{#snippet wordCountSnippet(data: TWordCountComponent)}
+	{@const Icon = data.icon}
+	{@const { strokeWidth, iconSize: size, iconColor: color } = data}
 		<Icon {size} {color} {strokeWidth}/>
-		<p class="regular-font" id="word-count">{wordCount}</p>
-	{/if}
-	</div>
-{/key}
+		{#key wordCount}
+			<p
+				class="regular-font"
+				id="word-count"
+				in:scale={{ easing: bounceOut, duration: 750, start: 0}}
+			>
+				{wordCount}
+			</p>
+		{/key}
+{/snippet}
+
+<div class="word-count-wrapper">
+	{@render wordCountSnippet(data)}
+</div>
 
 <style>
 	.word-count-wrapper {
+		width: min-content;
 		display: grid;
+		height: 1rem;
 		grid-template-columns: min-content min-content;
 		column-gap: 0.125rem;
 		align-items: center;
