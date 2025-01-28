@@ -4,3 +4,4 @@ export { default as RandomizedWordList } from "./RanomizedWordList.svelte";
 export { default as CopyButton } from "./CopyButton.svelte";
 export { default as ResetButton } from "./ResetButton.svelte";
 export { default as ShuffleButton } from "./ShuffleButton.svelte";
+export { default as NavCard } from "./NavCard.svelte";
