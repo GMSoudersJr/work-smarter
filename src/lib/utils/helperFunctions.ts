@@ -1,4 +1,4 @@
-import type {TWord} from "$lib/types";
+import type { TWord } from '$lib/types';
 
 export function removeWordFromList(word: TWord, list: TWord[]): void {
 	const index = list.indexOf(word);
@@ -7,7 +7,7 @@ export function removeWordFromList(word: TWord, list: TWord[]): void {
 
 export function getRandomInteger(max: number): number {
 	return Math.floor(Math.random() * max);
-};
+}
 
 export function randomizeEntries(entries: TWord[]): TWord[] {
 	const result: TWord[] = [];
@@ -21,4 +21,4 @@ export function randomizeEntries(entries: TWord[]): TWord[] {
 	while (entries.length > 0) updateLists();
 
 	return result;
-};
+}
