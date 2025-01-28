@@ -30,14 +30,16 @@
 	let { entries = $bindable() } = $props();
 	let uid = entries.length + 1;
 	let wordCount = $derived(entries.length);
+	const validInput = /^\s*[\p{L}\p{N}'-~]+(?:\s+[\p{L}\p{N}'-~]+)*\s*$/u;
 
 	function handleKeydown(event: KeyboardEvent) {
 		if (event.key !== 'Enter') return;
 		const inputElement = document.getElementsByTagName('input').namedItem('word-input');
 		if (inputElement) {
-			if (inputElement.value === '') return;
 
-			const newEntry = new Word(inputElement.value);
+			if (!inputElement.value.match(validInput)) return;
+
+			const newEntry = new Word(inputElement.value.toString().trim());
 			newEntry.id = `${inputElement.value}${uid++}`;
 			newEntry.originalIndex = entries.length;
 			newEntry.randomizedIndex = 0;
@@ -71,6 +73,7 @@
 		display: flex;
 		flex-direction: column;
 	}
+
 	.input-label {
 		font-size: 0.75rem;
 		font-weight: 300;
@@ -80,6 +83,7 @@
 		column-gap: 0.125rem;
 		align-items: center;
 	}
+
 	.input {
 		border: 1px solid #d1d1d1;
 		border-radius: var(--border-radius);
