@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { CheckIcon, CopyIcon, type Icon as IconType } from 'lucide-svelte';
+	import { ClipboardCopyIcon, CopyIcon, type Icon as IconType } from 'lucide-svelte';
 	import { scale } from 'svelte/transition';
 
 	type CopyButton = {
@@ -11,7 +11,7 @@
 	const copyButton: CopyButton = {
 		name: 'copyButton',
 		copyIcon: CopyIcon,
-		copiedIcon: CheckIcon
+		copiedIcon: ClipboardCopyIcon
 	};
 
 	async function handleClick() {
@@ -30,7 +30,7 @@
 
 	const size = '1em';
 	const color = '#663399';
-	const strokeWidth = 4;
+	const strokeWidth = 2;
 </script>
 
 {#key copyButton}
