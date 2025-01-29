@@ -46,6 +46,7 @@
 		flex-direction: column;
 		align-items: center;
 		margin-top: 5rem;
+		margin-bottom: 0.5rem;
 
 		span {
 			display: flex;

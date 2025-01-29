@@ -54,6 +54,7 @@
 		display: grid;
 		height: 100vh;
 		grid-template-rows: min-content auto min-content;
+		row-gap: 2rem;
 
 		.main {
 			height: 100%;
@@ -63,7 +64,7 @@
 
 	.header {
 		text-align: center;
-		margin-bottom: 2rem;
+		margin-top: 2rem;
 
 		a {
 			text-decoration: none;
