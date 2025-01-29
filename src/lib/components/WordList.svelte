@@ -69,13 +69,13 @@
 
 		.original {
 			.copied::after {
-				content: " [Copied]";
+				content: " [O]";
 				color: var(--purple);
 			}
 		}
 
 		.original:has(.copied) {
-			border-color: #259259;
+			color: var(--yellow);
 		}
 	}
 
