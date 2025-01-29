@@ -9,23 +9,22 @@
 		randomizedEntries?: TWord[];
 	}
 
+	type TListLocation = "original" | "randomized";
+
 	let { entries = $bindable(), randomizedEntries }: wordListProps = $props();
 </script>
 
-{#snippet scratchout(entry: TWord)}
-	<s>
-
-	</s>
-{/snippet}
-
-{#snippet listitems(listOfWords: TWord[])}
+{#snippet listitems(listOfWords: TWord[], listLocation: TListLocation)}
 	{#each listOfWords as entry, index (entry.id)}
 		<li
 			in:receive={{ key: entry.id }}
 			out:send={{ key: entry.id }}
 			animate:flip={{ duration: 300 }}
+			class={listLocation}
 		>
-			<div class="word-grid regular-font">
+			<div
+				class="word-grid regular-font"
+			>
 				<p id="word-index">{index + 1}.</p>
 				<p id="word-text" class={{ copied: entry.isCopied }}>{entry.word}</p>
 				{#if entries}
@@ -40,9 +39,9 @@
 
 <ul class="word-list">
 	{#if entries}
-		{@render listitems(entries)}
+		{@render listitems(entries, "original")}
 	{:else if randomizedEntries}
-		{@render listitems(randomizedEntries)}
+		{@render listitems(randomizedEntries, "randomized")}
 	{/if}
 </ul>
 
@@ -58,6 +57,26 @@
 			margin: 0.5rem 0;
 			box-shadow: 5px 5px 5px #e0e0e0;
 		}
+
+		.randomized {
+			.copied {
+				text-decoration: line-through;
+				text-decoration-color: var(--yellow);
+				text-decoration-thickness: 0.0625rem;
+				text-decoration-style: solid;
+			}
+		}
+
+		.original {
+			.copied::after {
+				content: " [Copied]";
+				color: var(--purple);
+			}
+		}
+
+		.original:has(.copied) {
+			border-color: #259259;
+		}
 	}
 
 	.word-grid {
@@ -71,11 +90,9 @@
 			justify-self: end;
 		}
 
-		.copied {
-			text-decoration: line-through;
-			text-decoration-color: var(--purple);
-			text-decoration-thickness: 0.0625rem;
-			text-decoration-style: solid;
+		.randomized {
+			background-color: aliceblue;
+			border: 1px solid green;
 		}
 	}
 </style>
