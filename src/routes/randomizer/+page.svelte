@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { WordList, WordInput, RandomizedWordList, ResetButton } from '$lib/components';
+	import { WordInput, ResetButton, WordList } from '$lib/components';
 	import type { PageProps } from './$types';
 	import type { TWord } from '$lib/types';
 	import { randomizeEntries } from '$lib/utils';
@@ -33,7 +33,7 @@
 				<h3 class="all-caps-200">RANDOMIZED</h3>
 			</div>
 		{/if}
-		<RandomizedWordList {randomizedEntries} />
+		<WordList {randomizedEntries} />
 	</div>
 </section>
 </div>

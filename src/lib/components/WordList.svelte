@@ -1,12 +1,19 @@
 <script lang="ts">
 	import { send, receive } from '$lib/transition';
 	import { flip } from 'svelte/animate';
-	import RemoveButton from './RemoveButton.svelte';
-	let { entries = $bindable() } = $props();
+	import type { TWord } from '$lib/types';
+	import { CopyButton, RemoveButton } from '$lib/components';
+
+	type wordListProps = {
+		entries?:TWord[];
+		randomizedEntries?: TWord[];
+	}
+
+	let { entries = $bindable(), randomizedEntries }: wordListProps = $props();
 </script>
 
-<ul class="word-list">
-	{#each entries as entry, index (entry.id)}
+{#snippet listitems(listOfWords: TWord[])}
+	{#each listOfWords as entry, index (entry.id)}
 		<li
 			in:receive={{ key: entry.id }}
 			out:send={{ key: entry.id }}
@@ -15,10 +22,22 @@
 			<div class="word-grid">
 				<p id="word-index" class="regular-font">{index + 1}.</p>
 				<p id="word-text" class="regular-font">{entry.word}</p>
-				<RemoveButton {entries} {entry} />
+				{#if entries}
+					<RemoveButton {entries} {entry} />
+				{:else if randomizedEntries}
+					<CopyButton {entry} />
+				{/if}
 			</div>
 		</li>
 	{/each}
+{/snippet}
+
+<ul class="word-list">
+	{#if entries}
+		{@render listitems(entries)}
+	{:else if randomizedEntries}
+		{@render listitems(randomizedEntries)}
+	{/if}
 </ul>
 
 <style>
@@ -31,6 +50,7 @@
 			border: 1px solid #d1d1d1;
 			border-radius: var(--border-radius);
 			margin: 0.5rem 0;
+			box-shadow: 5px 5px 5px #e0e0e0;
 		}
 	}
 

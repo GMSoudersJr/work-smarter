@@ -1,11 +1,10 @@
 <script lang="ts">
 	import { AsteriskIcon, type Icon as IconType } from 'lucide-svelte';
 	import {WordCount} from '$lib/components';
+
 	class Word {
 		id = $state();
 		word = $state();
-		originalIndex = $state();
-		randomizedIndex = $state();
 		isCopied = $state(false);
 
 		constructor(word: string) {
@@ -41,8 +40,6 @@
 
 			const newEntry = new Word(inputElement.value.toString().trim());
 			newEntry.id = `${inputElement.value}${uid++}`;
-			newEntry.originalIndex = entries.length;
-			newEntry.randomizedIndex = 0;
 
 			entries.push(newEntry);
 

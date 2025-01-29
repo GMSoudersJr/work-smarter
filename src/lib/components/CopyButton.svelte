@@ -1,53 +1,72 @@
 <script lang="ts">
+	import type {TWord} from '$lib/types';
 	import { ClipboardCopyIcon, CopyIcon, type Icon as IconType } from 'lucide-svelte';
 	import { scale } from 'svelte/transition';
 
-	type CopyButton = {
-		name: string;
-		copyIcon: typeof IconType;
-		copiedIcon: typeof IconType;
+	type TIconButton = {
+		title: string;
+		icon: typeof IconType;
+		iconSize: string;
+		iconColor?: string;
 	};
 
-	const copyButton: CopyButton = {
-		name: 'copyButton',
-		copyIcon: CopyIcon,
-		copiedIcon: ClipboardCopyIcon
-	};
+	type CopyButtonProps = {
+		entry: TWord;
+	}
 
 	async function handleClick() {
-		const inputElement = document.getElementById(id);
-		inputElement?.focus();
 		try {
-			await navigator.clipboard.writeText(randomizedWord);
-			copied = true;
+			await navigator.clipboard.writeText(entry.word);
+			entry.isCopied = true;
 		} catch (error) {
 			console.error(error);
+		} finally {
+			if (entry.isCopied) {
+				console.log(`copied ${entry.word} to clipboard`)
+			}
 		}
 	}
 
-	let { id, randomizedWord } = $props();
-	let copied = $state(false);
+	let { entry }: CopyButtonProps = $props();
 
 	const size = '1em';
 	const color = '#663399';
-	const strokeWidth = 2;
+
+	const copyIconButton: TIconButton = {
+		title: `Copy "${entry.word}" to clipboard`,
+		icon: CopyIcon,
+		iconSize: size,
+	};
+
+	const clipboardCopyIconButton: TIconButton = {
+		title: `Copied "${entry.word}" to clipboard`,
+		icon: ClipboardCopyIcon,
+		iconSize: size,
+		iconColor: color,
+	};
+
 </script>
 
-{#key copyButton}
-	<button class="button" title={`Copy "${randomizedWord}" to clipboard`} onclick={handleClick}>
-		{#key copied}
-			<div in:scale>
-				{#if copied}
-					{@const CopiedIcon = copyButton.copiedIcon}
-					<CopiedIcon {size} {color} {strokeWidth} />
-				{:else}
-					{@const CopyIcon = copyButton.copyIcon}
-					<CopyIcon {size} />
-				{/if}
-			</div>
+{#snippet iconizedButton(entry: TWord, iconButton: TIconButton)}
+	{@const {icon: Icon, iconSize: size, iconColor: color} = iconButton}
+	<button
+		class="button"
+		title={iconButton.title}
+		type="button"
+		onclick={handleClick}
+		in:scale
+	>
+		{#key entry.isCopied}
+			<Icon {size} {color} />
 		{/key}
 	</button>
-{/key}
+{/snippet}
+
+{#if entry.isCopied}
+	{@render iconizedButton(entry, clipboardCopyIconButton)}
+	{:else}
+	{@render iconizedButton(entry, copyIconButton)}
+{/if}
 
 <style>
 	.button {
