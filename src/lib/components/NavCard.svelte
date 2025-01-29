@@ -23,23 +23,25 @@
 
 </script>
 
-<div class="nav-card">
-	{#if href}
-		{@const Icon1 = icon1}
-		{@const size = iconSize}
-		{@const color = iconColor}
-		<a {href} class="link">
-			<h2 class="all-caps-600">
-				{linkText.toUpperCase()}
-			</h2>
-		</a>
-		<p class="regular-font description">{description}</p>
-		<Icon1 {size} {color} />
-		{#if icon2}
-			{@const Icon2 = icon2}
-			<Icon2 {size} {color} />
-		{/if}
+{#snippet navCard()}
+	{@const Icon1 = icon1}
+	{@const size = iconSize}
+	{@const color = iconColor}
+	<a {href} class="link">
+		<h2 class="all-caps-600">
+			{linkText.toUpperCase()}
+		</h2>
+	</a>
+	<p class="regular-font description">{description}</p>
+	<Icon1 {size} {color} />
+	{#if icon2}
+		{@const Icon2 = icon2}
+		<Icon2 {size} {color} />
 	{/if}
+{/snippet}
+
+<div class="nav-card">
+	{@render navCard()}
 </div>
 
 <style>
@@ -51,7 +53,7 @@
 		grid-template-columns: 1fr 1fr;
 		place-items: center;
 		padding: 0.25rem;
-		background-color: #e0e0e0;
+		box-shadow: 5px 5px 10px #e0e0e0;
 	}
 
 	.link {
