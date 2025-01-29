@@ -12,6 +12,12 @@
 	let { entries = $bindable(), randomizedEntries }: wordListProps = $props();
 </script>
 
+{#snippet scratchout(entry: TWord)}
+	<s>
+
+	</s>
+{/snippet}
+
 {#snippet listitems(listOfWords: TWord[])}
 	{#each listOfWords as entry, index (entry.id)}
 		<li
@@ -19,9 +25,9 @@
 			out:send={{ key: entry.id }}
 			animate:flip={{ duration: 300 }}
 		>
-			<div class="word-grid">
-				<p id="word-index" class="regular-font">{index + 1}.</p>
-				<p id="word-text" class="regular-font">{entry.word}</p>
+			<div class="word-grid regular-font">
+				<p id="word-index">{index + 1}.</p>
+				<p id="word-text" class={{ copied: entry.isCopied }}>{entry.word}</p>
 				{#if entries}
 					<RemoveButton {entries} {entry} />
 				{:else if randomizedEntries}
@@ -55,14 +61,21 @@
 	}
 
 	.word-grid {
-		height: 2rem;
+		height: 2.5rem;
 		display: grid;
 		column-gap: 0.25rem;
-		grid-template-columns: 0.4045fr 1.618fr 0.4045fr;
+		grid-template-columns: 2.5rem 1fr 2.5rem;
 		align-items: center;
 
 		#word-index {
 			justify-self: end;
+		}
+
+		.copied {
+			text-decoration: line-through;
+			text-decoration-color: var(--purple);
+			text-decoration-thickness: 0.0625rem;
+			text-decoration-style: solid;
 		}
 	}
 </style>

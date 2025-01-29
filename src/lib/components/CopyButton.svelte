@@ -15,14 +15,18 @@
 	}
 
 	async function handleClick() {
-		try {
-			await navigator.clipboard.writeText(entry.word);
-			entry.isCopied = true;
-		} catch (error) {
-			console.error(error);
-		} finally {
-			if (entry.isCopied) {
-				console.log(`copied ${entry.word} to clipboard`)
+		if (entry.isCopied) {
+			entry.isCopied = !entry.isCopied;
+		} else {
+			try {
+				await navigator.clipboard.writeText(entry.word);
+				entry.isCopied = true;
+			} catch (error) {
+				console.error(error);
+			} finally {
+				if (entry.isCopied) {
+					alert(`successfully copied "${entry.word}" to clipboard`);
+				}
 			}
 		}
 	}

@@ -29,6 +29,7 @@
 	let { entries = $bindable() } = $props();
 	let uid = entries.length + 1;
 	let wordCount = $derived(entries.length);
+
 	const validInput = /^\s*[\p{L}\p{N}'-~]+(?:\s+[\p{L}\p{N}'-~]+)*\s*$/u;
 
 	function handleKeydown(event: KeyboardEvent) {
@@ -84,7 +85,7 @@
 	.input {
 		border: 1px solid #d1d1d1;
 		border-radius: var(--border-radius);
-		font-size: 1.4em;
+		font-size: 1.5rem;
 		padding: 0.5em;
 	}
 </style>
