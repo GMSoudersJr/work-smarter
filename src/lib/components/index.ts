@@ -6,3 +6,5 @@ export { default as CopyButton } from './CopyButton.svelte';
 export { default as ResetButton } from './ResetButton.svelte';
 export { default as ShuffleButton } from './ShuffleButton.svelte';
 export { default as NavCard } from './NavCard.svelte';
+export { default as Socials } from './Socials.svelte';
+export { default as Footer } from './Footer.svelte';

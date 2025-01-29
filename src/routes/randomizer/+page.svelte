@@ -9,7 +9,8 @@
 	let randomizedEntries: TWord[] = $derived(randomizeEntries(entries.slice()));
 </script>
 
-<section class="page-grid">
+<div class="page">
+<section class="section-grid">
 	<div class="header">
 		<h2 class="all-caps-800">{data.header}</h2>
 	</div>
@@ -35,9 +36,14 @@
 		<RandomizedWordList {randomizedEntries} />
 	</div>
 </section>
+</div>
 
 <style>
-	.page-grid {
+	.page {
+		height: 100%;
+		margin: 0 0.5rem;
+	}
+	.section-grid {
 		display: grid;
 		grid-template-columns: 1fr 1fr;
 		column-gap: 2em;

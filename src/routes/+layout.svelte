@@ -2,6 +2,7 @@
 	import { onNavigate } from '$app/navigation';
 	import '../app.css';
 	import { page } from '$app/state';
+	import {Footer} from '$lib/components';
 
 	let { children } = $props();
 
@@ -32,15 +33,34 @@
 	<meta property="twitter:image" content={page.data.ogImageUrl} />
 </svelte:head>
 
-<h1 class="all-caps-800 header">
-	<a href="/"> WORK SMARTER </a>
-</h1>
+<div class="layout-grid">
 
-<main>
-	{@render children()}
-</main>
+	<header class="header">
+		<h1 class="all-caps-800">
+			<a href="/"> WORK SMARTER </a>
+		</h1>
+	</header>
+
+	<main class="main">
+		{@render children()}
+	</main>
+
+	<Footer />
+
+</div>
 
 <style>
+	.layout-grid {
+		display: grid;
+		height: 100vh;
+		grid-template-rows: min-content auto min-content;
+
+		.main {
+			height: 100%;
+		}
+		
+	}
+
 	.header {
 		text-align: center;
 		margin-bottom: 2rem;
@@ -50,4 +70,5 @@
 			color: var(--purple);
 		}
 	}
+
 </style>
