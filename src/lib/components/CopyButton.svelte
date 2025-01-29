@@ -23,10 +23,6 @@
 				entry.isCopied = true;
 			} catch (error) {
 				console.error(error);
-			} finally {
-				if (entry.isCopied) {
-					alert(`successfully copied "${entry.word}" to clipboard`);
-				}
 			}
 		}
 	}
