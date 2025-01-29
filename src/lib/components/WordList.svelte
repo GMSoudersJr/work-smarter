@@ -76,6 +76,7 @@
 
 		.original:has(.copied) {
 			color: var(--yellow);
+			box-shadow: none;
 		}
 	}
 
