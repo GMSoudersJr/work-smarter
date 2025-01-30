@@ -1,18 +1,16 @@
 <script lang="ts">
 	import { send, receive } from '$lib/transition';
 	import { flip } from 'svelte/animate';
-	import type { TWord } from '$lib/types';
+	import type { TWord, TListLocation } from '$lib/types';
 	import { CopyButton, RemoveButton } from '$lib/components';
 
 	interface Props {
 		entries?:TWord[];
 		randomizedEntries?: TWord[];
-		location: TListLocation;
+		listLocation: TListLocation;
 	}
 
-	type TListLocation = "original" | "randomized";
-
-	let { entries = $bindable(), randomizedEntries }: Props = $props();
+	let { entries = $bindable(), randomizedEntries, listLocation }: Props = $props();
 </script>
 
 {#snippet listitems(listOfWords: TWord[])}
@@ -21,7 +19,7 @@
 			in:receive={{ key: entry.id }}
 			out:send={{ key: entry.id }}
 			animate:flip={{ duration: 300 }}
-			class={location}
+			class={listLocation}
 		>
 			<div
 				class="word-grid regular-font"
@@ -65,13 +63,6 @@
 				text-decoration-color: var(--yellow);
 				text-decoration-thickness: 0.0625rem;
 				text-decoration-style: solid;
-			}
-		}
-
-		.original {
-			.copied::after {
-				content: " [O]";
-				color: var(--purple);
 			}
 		}
 

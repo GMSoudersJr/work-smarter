@@ -7,7 +7,7 @@
 		title: string;
 		icon: typeof IconType;
 		iconSize: string;
-		iconStrokeWidth: string;
+		iconStrokeWidth: number;
 		iconColor: string;
 	};
 
@@ -20,7 +20,7 @@
 		icon: CaseSensitiveIcon,
 		iconSize: '1em',
 		iconColor: 'var(--purple)',
-		iconStrokeWidth: '1',
+		iconStrokeWidth: 1,
 	};
 
 	const lowercaseToggleButton: TToggleIconButton = {
@@ -28,7 +28,7 @@
 		icon: CaseLowerIcon,
 		iconSize: '1em',
 		iconColor: 'var(--purple)',
-		iconStrokeWidth: '1',
+		iconStrokeWidth: 1,
 	};
 
 	let capitalize = $state(false);

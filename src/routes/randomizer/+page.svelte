@@ -10,33 +10,35 @@
 </script>
 
 <div class="page">
-<section class="section-grid">
-	<div class="header">
-		<h2 class="all-caps-800">{data.header}</h2>
-	</div>
+	<section class="section-grid">
 
-	<WordInput bind:entries />
+		<div class="header">
+			<h2 class="all-caps-800">{data.header}</h2>
+		</div>
 
-	<div id="original-list">
-		{#if entries.length > 0}
-			<div class="column-header">
-				<h3 class="all-caps-200">ORIGINAL</h3>
-				<ResetButton bind:entries />
-			</div>
-		{/if}
-		<WordList bind:entries location="original"/>
-	</div>
+		<WordInput bind:entries />
 
-	<div id="randomized-list">
-		{#if randomizedEntries.length > 0}
-			<div class="column-header">
-				<h3 class="all-caps-200">RANDOMIZED</h3>
-				<CaseToggleButton {entries}/>
-			</div>
-		{/if}
-		<WordList {randomizedEntries} location="randomized" />
-	</div>
-</section>
+		<div id="original-list">
+			{#if entries.length > 0}
+				<div class="column-header">
+					<h3 class="all-caps-200">ORIGINAL</h3>
+					<ResetButton bind:entries />
+				</div>
+			{/if}
+			<WordList bind:entries listLocation="original"/>
+		</div>
+
+		<div id="randomized-list">
+			{#if randomizedEntries.length > 0}
+				<div class="column-header">
+					<h3 class="all-caps-200">RANDOMIZED</h3>
+					<CaseToggleButton {entries}/>
+				</div>
+			{/if}
+			<WordList {randomizedEntries} listLocation="randomized" />
+		</div>
+
+	</section>
 </div>
 
 <style>
@@ -62,6 +64,6 @@
 	.column-header {
 		display: flex;
 		align-items: center;
-		gap: 0.25rem;
+		gap: 0.5rem;
 	}
 </style>
