@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { AsteriskIcon, type Icon as IconType } from 'lucide-svelte';
-	import {CapitalizeToggler, WordCount} from '$lib/components';
-	import {capitalize} from '$lib/utils';
+	import { WordCount} from '$lib/components';
+	import { capitalize } from '$lib/utils';
 
 	class Word {
 		id: (string | undefined) = $state();
@@ -77,10 +77,7 @@
 		{/if}
 	{/key}
 	<input id="word-input" class="input regular-font" type="text" onkeydown={handleKeydown} />
-	<div class="under-input">
-		<WordCount {wordCount} />
-		<CapitalizeToggler {entries} />
-	</div>
+	<WordCount {wordCount} />
 </div>
 
 <style>
@@ -107,9 +104,4 @@
 		padding: 0.5em;
 	}
 
-	.under-input {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-	}
 </style>

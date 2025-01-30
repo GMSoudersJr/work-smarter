@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { WordInput, ResetButton, WordList } from '$lib/components';
+	import { WordInput, ResetButton, WordList, CaseToggleButton } from '$lib/components';
 	import type { PageProps } from './$types';
 	import type { TWord } from '$lib/types';
 	import { randomizeEntries } from '$lib/utils';
@@ -31,6 +31,7 @@
 		{#if randomizedEntries.length > 0}
 			<div class="column-header">
 				<h3 class="all-caps-200">RANDOMIZED</h3>
+				<CaseToggleButton {entries}/>
 			</div>
 		{/if}
 		<WordList {randomizedEntries} />
