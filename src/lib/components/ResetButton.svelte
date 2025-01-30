@@ -1,6 +1,11 @@
 <script lang="ts">
+	import type {TWord} from '$lib/types';
 	import {focusOnInputElement} from '$lib/utils';
 	import { Trash2Icon, type Icon as IconType } from 'lucide-svelte';
+
+	interface Props {
+		entries: TWord[];
+	}
 
 	type ResetButton = {
 		title: string;
@@ -12,7 +17,7 @@
 		icon: Trash2Icon
 	};
 
-	let { entries = $bindable() } = $props();
+	let { entries = $bindable() }: Props = $props();
 
 	const size = '1em';
 	const strokeWidth = 1;

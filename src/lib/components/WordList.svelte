@@ -4,23 +4,24 @@
 	import type { TWord } from '$lib/types';
 	import { CopyButton, RemoveButton } from '$lib/components';
 
-	type wordListProps = {
+	interface Props {
 		entries?:TWord[];
 		randomizedEntries?: TWord[];
+		location: TListLocation;
 	}
 
 	type TListLocation = "original" | "randomized";
 
-	let { entries = $bindable(), randomizedEntries }: wordListProps = $props();
+	let { entries = $bindable(), randomizedEntries }: Props = $props();
 </script>
 
-{#snippet listitems(listOfWords: TWord[], listLocation: TListLocation)}
+{#snippet listitems(listOfWords: TWord[])}
 	{#each listOfWords as entry, index (entry.id)}
 		<li
 			in:receive={{ key: entry.id }}
 			out:send={{ key: entry.id }}
 			animate:flip={{ duration: 300 }}
-			class={listLocation}
+			class={location}
 		>
 			<div
 				class="word-grid regular-font"
@@ -39,9 +40,9 @@
 
 <ul class="word-list">
 	{#if entries}
-		{@render listitems(entries, "original")}
+		{@render listitems(entries)}
 	{:else if randomizedEntries}
-		{@render listitems(randomizedEntries, "randomized")}
+		{@render listitems(randomizedEntries)}
 	{/if}
 </ul>
 

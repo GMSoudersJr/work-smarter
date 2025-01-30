@@ -1,6 +1,12 @@
 <script lang="ts">
+	import type {TWord} from '$lib/types';
 	import { focusOnInputElement, removeWordFromList } from '$lib/utils';
 	import { XIcon, type Icon as IconType } from 'lucide-svelte';
+
+	interface Props {
+		entry: TWord;
+		entries: TWord[];
+	}
 
 	type RemoveButton = {
 		title: string;
@@ -12,7 +18,7 @@
 		icon: XIcon
 	};
 
-	let { entry, entries } = $props();
+	let { entry, entries }: Props = $props();
 
 	async function handleClick() {
 		removeWordFromList(entry, entries);

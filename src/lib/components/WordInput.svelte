@@ -2,6 +2,11 @@
 	import { AsteriskIcon, type Icon as IconType } from 'lucide-svelte';
 	import { WordCount} from '$lib/components';
 	import { capitalize } from '$lib/utils';
+	import type {TWord} from '$lib/types';
+
+	interface Props {
+		entries: TWord[];
+	};
 
 	class Word {
 		id: (string | undefined) = $state();
@@ -33,7 +38,7 @@
 		iconColor: 'var(--yellow)'
 	};
 
-	let { entries = $bindable() } = $props();
+	let { entries = $bindable() }: Props = $props();
 	let uid = entries.length + 1;
 	let wordCount = $derived(entries.length);
 

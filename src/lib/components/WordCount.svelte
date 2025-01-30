@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { WholeWordIcon, type Icon as IconType } from "lucide-svelte";
-	import {bounceIn, bounceInOut, bounceOut, quadInOut} from "svelte/easing";
-	import {blur, fade, fly, scale, slide} from "svelte/transition";
+	import { bounceOut } from "svelte/easing";
+	import { scale } from "svelte/transition";
 
-	type WordCountProps = {
+	interface Props  {
 		wordCount: number;
 	};
 
@@ -15,7 +15,7 @@
 		strokeWidth: string;
 	}
 
-	let { wordCount }: WordCountProps = $props();
+	let { wordCount }: Props = $props();
 
 	const data: TWordCountComponent = {
 		icon: WholeWordIcon,

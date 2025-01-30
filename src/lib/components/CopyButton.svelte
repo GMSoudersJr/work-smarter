@@ -10,7 +10,7 @@
 		iconColor?: string;
 	};
 
-	type CopyButtonProps = {
+	interface Props {
 		entry: TWord;
 	}
 
@@ -27,7 +27,7 @@
 		}
 	}
 
-	let { entry }: CopyButtonProps = $props();
+	let { entry }: Props = $props();
 
 	const size = '1em';
 	const color = '#663399';

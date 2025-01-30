@@ -24,7 +24,7 @@
 				<ResetButton bind:entries />
 			</div>
 		{/if}
-		<WordList bind:entries />
+		<WordList bind:entries location="original"/>
 	</div>
 
 	<div id="randomized-list">
@@ -34,7 +34,7 @@
 				<CaseToggleButton {entries}/>
 			</div>
 		{/if}
-		<WordList {randomizedEntries} />
+		<WordList {randomizedEntries} location="randomized" />
 	</div>
 </section>
 </div>

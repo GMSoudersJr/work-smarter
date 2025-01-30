@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { type Icon as IconType } from 'lucide-svelte';
 
-	type NavCardProps = {
+	interface Props {
 		linkText: string;
 		href: string;
 		description: string;
@@ -19,7 +19,7 @@
 		iconColor,
 		href,
 		linkText
-	}: NavCardProps = $props();
+	}: Props = $props();
 
 </script>
 
