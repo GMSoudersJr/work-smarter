@@ -29,9 +29,10 @@
 				<p id="word-text" class={{ copied: entry.isCopied }}>
 					{entry.word}
 					{#if listLocation === "randomized"}
+						{@const indexDifference = entry.indexDifference(index)}
 						<span class="shuffle-span">
-							{entry.indexDifference(index)}
-							<ShuffleIcon size={'1em'} />
+							{indexDifference}
+							<ShuffleIcon size={'1em'} color={indexDifference === 0 ? 'red' : 'green'}/>
 						</span>
 					{/if}
 				</p>
@@ -104,6 +105,7 @@
 			display: flex;
 			align-items: center;
 			justify-content: space-between;
+			padding-right: 0.125rem;
 		}
 		.randomized {
 			background-color: aliceblue;
