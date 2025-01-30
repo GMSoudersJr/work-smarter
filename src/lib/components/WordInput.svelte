@@ -1,14 +1,21 @@
 <script lang="ts">
 	import { AsteriskIcon, type Icon as IconType } from 'lucide-svelte';
-	import {WordCount} from '$lib/components';
+	import {CapitalizeToggler, WordCount} from '$lib/components';
+	import {capitalize} from '$lib/utils';
 
 	class Word {
-		id = $state();
-		word = $state();
+		id: (string | undefined) = $state();
+		word: (string | undefined) = $state();
 		isCopied = $state(false);
 
 		constructor(word: string) {
 			this.word = word;
+		}
+
+		capitalized = () => {
+			if (this.word) {
+				this.word = capitalize(this.word);
+			}
 		}
 	}
 
@@ -39,7 +46,15 @@
 
 			if (!inputElement.value.match(validInput)) return;
 
+			const capitalizeInputElement = document.getElementsByTagName('input').namedItem('capitalize');
+
 			const newEntry = new Word(inputElement.value.toString().trim());
+			if( capitalizeInputElement ) {
+				if (capitalizeInputElement.checked) {
+					newEntry.capitalized();
+				}
+			}
+
 			newEntry.id = `${inputElement.value}${uid++}`;
 
 			entries.push(newEntry);
@@ -62,7 +77,10 @@
 		{/if}
 	{/key}
 	<input id="word-input" class="input regular-font" type="text" onkeydown={handleKeydown} />
-	<WordCount {wordCount} />
+	<div class="under-input">
+		<WordCount {wordCount} />
+		<CapitalizeToggler {entries} />
+	</div>
 </div>
 
 <style>
@@ -87,5 +105,11 @@
 		border-radius: var(--border-radius);
 		font-size: 1.5rem;
 		padding: 0.5em;
+	}
+
+	.under-input {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
 	}
 </style>

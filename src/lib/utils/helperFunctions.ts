@@ -26,3 +26,9 @@ export function randomizeEntries(entries: TWord[]): TWord[] {
 export function focusOnInputElement() {
 	document.getElementsByTagName('input').namedItem('word-input')?.focus();
 }
+
+export function capitalize(word: string): string {
+	const splitWord = word.split('');
+	splitWord.splice(0, 1, splitWord[0].toUpperCase()).join('');
+	return splitWord.join('');
+}
