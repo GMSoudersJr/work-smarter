@@ -1,14 +1,7 @@
 <script lang="ts">
-	import type {TWord} from '$lib/types';
-	import { ClipboardCopyIcon, CopyIcon, type Icon as IconType } from 'lucide-svelte';
+	import type { TWord, TIconButton } from '$lib/types';
+	import { ClipboardCopyIcon, CopyIcon } from 'lucide-svelte';
 	import { scale } from 'svelte/transition';
-
-	type TIconButton = {
-		title: string;
-		icon: typeof IconType;
-		iconSize: string;
-		iconColor?: string;
-	};
 
 	interface Props {
 		entry: TWord;
@@ -33,13 +26,13 @@
 	const color = '#663399';
 
 	const copyIconButton: TIconButton = {
-		title: `Copy "${entry.word}" to clipboard`,
+		title: (word) => `Copy "${word}" to clipboard`,
 		icon: CopyIcon,
 		iconSize: size,
 	};
 
 	const clipboardCopyIconButton: TIconButton = {
-		title: `Copied "${entry.word}" to clipboard`,
+		title: (word) => `Copied "${word}" to clipboard`,
 		icon: ClipboardCopyIcon,
 		iconSize: size,
 		iconColor: color,
@@ -48,10 +41,10 @@
 </script>
 
 {#snippet iconizedButton(entry: TWord, iconButton: TIconButton)}
-	{@const {icon: Icon, iconSize: size, iconColor: color} = iconButton}
+	{@const {icon: Icon, iconSize: size, iconColor: color, title} = iconButton}
 	<button
 		class="button"
-		title={iconButton.title}
+		title={title(entry.word)}
 		type="button"
 		onclick={handleClick}
 		in:scale
@@ -61,6 +54,7 @@
 		{/key}
 	</button>
 {/snippet}
+
 
 {#if entry.isCopied}
 	{@render iconizedButton(entry, clipboardCopyIconButton)}

@@ -12,14 +12,23 @@
 		id: (string | undefined) = $state();
 		word: (string | undefined) = $state();
 		isCopied = $state(false);
+		initialIndex: (number | undefined);
 
-		constructor(word: string) {
+		constructor(word: string, index: number) {
 			this.word = word;
+			this.initialIndex = index;
+			this.id = `${word}${index + 1}`;
 		}
 
 		capitalized = () => {
 			if (this.word) {
 				this.word = capitalize(this.word);
+			}
+		}
+
+		indexDifference = (randomizedIndex: number) => {
+			if (this.initialIndex) {
+				return this.initialIndex - randomizedIndex
 			}
 		}
 	}
@@ -53,7 +62,7 @@
 
 			const capitalizeInputElement = document.getElementsByTagName('input').namedItem('capitalize');
 
-			const newEntry = new Word(inputElement.value.toString().trim());
+			const newEntry = new Word(inputElement.value.toString().trim(), wordCount);
 			if( capitalizeInputElement ) {
 				if (capitalizeInputElement.checked) {
 					newEntry.capitalized();
