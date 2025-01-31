@@ -28,7 +28,7 @@
 
 		indexDifference = (randomizedIndex: number) => {
 			if (this.initialIndex || this.initialIndex === 0) {
-				return randomizedIndex - this.initialIndex
+				return this.initialIndex- randomizedIndex 
 			}
 		}
 	}

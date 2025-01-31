@@ -3,7 +3,7 @@
 	import { flip } from 'svelte/animate';
 	import type { TWord, TListLocation } from '$lib/types';
 	import { CopyButton, RemoveButton } from '$lib/components';
-	import {ShuffleIcon} from 'lucide-svelte';
+	import IndexDifferenceWidget from './IndexDifferenceWidget.svelte';
 
 	interface Props {
 		entries?:TWord[];
@@ -26,16 +26,15 @@
 				class="word-grid regular-font"
 			>
 				<p id="word-index">{index + 1}.</p>
-				<p id="word-text" class={{ copied: entry.isCopied }}>
-					{entry.word}
+				<div class="word-text">
+					<p id="word-text" class={{ copied: entry.isCopied }}>
+						{entry.word}
+					</p>
 					{#if listLocation === "randomized"}
 						{@const indexDifference = entry.indexDifference(index)}
-						<span class="shuffle-span">
-							{indexDifference}
-							<ShuffleIcon size={'1em'} color={indexDifference === 0 ? 'red' : 'green'}/>
-						</span>
+						<IndexDifferenceWidget {indexDifference} />
 					{/if}
-				</p>
+				</div>
 				{#if entries}
 					<RemoveButton {entries} {entry} />
 				{:else if randomizedEntries}
@@ -107,9 +106,15 @@
 			justify-content: space-between;
 			padding-right: 0.125rem;
 		}
+
 		.randomized {
 			background-color: aliceblue;
 			border: 1px solid green;
 		}
+	}
+	.word-text {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
 	}
 </style>

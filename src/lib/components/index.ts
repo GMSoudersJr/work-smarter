@@ -8,3 +8,4 @@ export { default as NavCard } from './NavCard.svelte';
 export { default as Socials } from './Socials.svelte';
 export { default as Footer } from './Footer.svelte';
 export { default as WordList } from './WordList.svelte';
+export { default as IndexDifferenceWidget } from './IndexDifferenceWidget.svelte';
