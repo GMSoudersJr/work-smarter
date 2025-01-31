@@ -11,8 +11,11 @@
 	--yellow: #ffc900;
 	--red: #aa142d;
 	--green: #259259;
+	--copied-color: #485559;
 	--page-background: #f5f5f5;
 	--border-radius: 0.25rem;
+	--box-shadow-color: #e0e0e0;
+	--box-shadow: 5px 5px 5px var(--box-shadow-color);
 }
 
 html, body {

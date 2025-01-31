@@ -14,40 +14,45 @@
 		icon: typeof IconType;
 		size: string;
 		color: string;
+		strokeWidth: number;
 	}
 
 	let { indexDifference }: Props = $props();
 
 	const iconSize: string = '1em';
+	const strokeWidth: number = 3;
 
 	const positiveDifference: TDifferenceIcon = {
 		icon: MoveUpIcon,
 		size: iconSize,
-		color: 'var(--green)'
+		color: 'var(--green)',
+		strokeWidth: strokeWidth,
 	}
 
 	const negativeDifference: TDifferenceIcon = {
 		icon: MoveDownIcon,
 		size: iconSize,
-		color: 'var(--purple)'
+		color: 'var(--purple)',
+		strokeWidth: strokeWidth,
 	}
 
 	const noDifference: TDifferenceIcon = {
 		icon: MoveHorizontalIcon,
 		size: iconSize,
-		color: 'var(--red)'
+		color: 'var(--red)',
+		strokeWidth: strokeWidth,
 	}
 
 </script>
 
 {#snippet differenceWidget(differenceIcon: TDifferenceIcon)}
-	{@const {icon: Icon, size, color} = differenceIcon}
+	{@const {icon: Icon, size, color, strokeWidth} = differenceIcon}
 	{#if indexDifference && indexDifference > 0}
 		+{indexDifference}
 		{:else}
 			{indexDifference}
 	{/if}
-	<Icon {size} {color} strokeWidth={3}/>
+	<Icon {size} {color} {strokeWidth} />
 {/snippet}
 
 {#key indexDifference}
@@ -69,7 +74,7 @@
 		font-size: 0.75rem;
 		display: flex;
 		align-items: center;
-		gap: 0.25rem;
+		gap: 0.06125rem;
 	}
 </style>
 

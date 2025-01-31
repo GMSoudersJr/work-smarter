@@ -53,7 +53,7 @@
 		grid-template-columns: 1fr 1fr;
 		place-items: center;
 		padding: 0.25rem;
-		box-shadow: 5px 5px 10px #e0e0e0;
+		box-shadow: 5px 5px 10px var(--box-shadow-color);
 	}
 
 	.link {

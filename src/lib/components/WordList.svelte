@@ -25,7 +25,9 @@
 			<div
 				class="word-grid regular-font"
 			>
-				<p id="word-index">{index + 1}.</p>
+				<div id="word-index">
+				<p>{index + 1}</p>
+				</div>
 				<div class="word-text">
 					<p id="word-text" class={{ copied: entry.isCopied }}>
 						{entry.word}
@@ -62,8 +64,8 @@
 		li {
 			border: 1px solid #d1d1d1;
 			border-radius: var(--border-radius);
-			margin: 0.5rem 0;
-			box-shadow: 5px 5px 5px #e0e0e0;
+			margin: 0.75rem 0;
+			box-shadow: var(--box-shadow);
 		}
 
 		.randomized {
@@ -76,16 +78,21 @@
 
 			.copied {
 				text-decoration: line-through;
-				text-decoration-color: var(--yellow);
-				text-decoration-thickness: 0.0625rem;
+				text-decoration-color: var(--copied-color);
+				text-decoration-thickness: 0.1rem;
 				text-decoration-style: solid;
 			}
 		}
 
-		.original:has(.copied) {
-			color: var(--yellow);
+		.original:has(.copied),
+		.randomized:has(.copied) {
 			box-shadow: none;
 		}
+
+		.original:has(.copied) {
+			color: var(--copied-color);
+		}
+
 	}
 
 	.word-grid {
@@ -97,24 +104,20 @@
 		justify-content: center;
 
 		#word-index {
-			justify-self: end;
-		}
-
-		#word-text {
+			height: 100%;
+			border-top-left-radius: var(--border-radius);
+			border-bottom-left-radius: var(--border-radius);
+			background-color: #d1d1d1;
 			display: flex;
+			justify-content: center;
 			align-items: center;
-			justify-content: space-between;
-			padding-right: 0.125rem;
-		}
-
-		.randomized {
-			background-color: aliceblue;
-			border: 1px solid green;
 		}
 	}
+
 	.word-text {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
+		padding-left: 0.5rem;
 	}
 </style>
