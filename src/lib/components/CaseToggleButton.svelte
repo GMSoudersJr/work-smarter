@@ -71,6 +71,7 @@
 		color: var(--purple);
 		display: inline-flex;
 		border: none;
+		border-radius: 50%;
 	}
 
 </style>
