@@ -18,21 +18,23 @@
 
 	let { indexDifference }: Props = $props();
 
+	const iconSize: string = '1em';
+
 	const positiveDifference: TDifferenceIcon = {
 		icon: MoveUpIcon,
-		size: '1em',
+		size: iconSize,
 		color: 'var(--green)'
 	}
 
 	const negativeDifference: TDifferenceIcon = {
 		icon: MoveDownIcon,
-		size: '1em',
-		color: 'var(--green)'
+		size: iconSize,
+		color: 'var(--purple)'
 	}
 
 	const noDifference: TDifferenceIcon = {
 		icon: MoveHorizontalIcon,
-		size: '1em',
+		size: iconSize,
 		color: 'var(--red)'
 	}
 
@@ -45,7 +47,7 @@
 		{:else}
 			{indexDifference}
 	{/if}
-	<Icon {size} {color}/>
+	<Icon {size} {color} strokeWidth={3}/>
 {/snippet}
 
 {#key indexDifference}
@@ -64,10 +66,10 @@
 
 <style>
 	.index-difference-widget {
-		font-size: 0.5rem;
+		font-size: 0.75rem;
 		display: flex;
 		align-items: center;
-		gap: 0.0625rem;
+		gap: 0.25rem;
 	}
 </style>
 
