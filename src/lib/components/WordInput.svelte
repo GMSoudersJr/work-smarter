@@ -54,7 +54,14 @@
 	const validInput = /^\s*[\p{L}\p{N}'-~]+(?:\s+[\p{L}\p{N}'-~]+)*\s*$/u;
 
 	function handleKeydown(event: KeyboardEvent) {
-		if (event.key !== 'Enter') return;
+		const { key, shiftKey } = event;
+
+		if (shiftKey && key === 'Backspace') {
+			entries.pop();
+			return;
+		}
+
+		if (key !== 'Enter') return;
 		const inputElement = document.getElementsByTagName('input').namedItem('word-input');
 		if (inputElement) {
 
