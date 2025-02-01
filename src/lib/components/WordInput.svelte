@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { AsteriskIcon, type Icon as IconType } from 'lucide-svelte';
-	import { WordCount} from '$lib/components';
+	import { WordCount, KeyboardShorcutInfoTooltip} from '$lib/components';
 	import { capitalize } from '$lib/utils';
 	import type {TWord} from '$lib/types';
 
@@ -85,6 +85,7 @@
 </script>
 
 <div class="input-wrapper">
+	<div class="over-input">
 	{#key inputLabel}
 		{#if inputLabel}
 			{@const Icon = inputLabel.icon}
@@ -96,6 +97,8 @@
 			</label>
 		{/if}
 	{/key}
+	<KeyboardShorcutInfoTooltip />
+	</div>
 	<input id="word-input" class="input regular-font" type="text" onkeydown={handleKeydown} />
 	<WordCount {wordCount} />
 </div>
@@ -105,6 +108,12 @@
 		grid-column: 1/3;
 		display: flex;
 		flex-direction: column;
+
+		.over-input {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+		}
 	}
 
 	.input-label {
