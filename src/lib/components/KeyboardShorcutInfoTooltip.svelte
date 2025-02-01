@@ -30,7 +30,7 @@
 		{title}
 	>
 		<Icon {size} {color} />
-		<span class="tooltip-text">
+		<div class="tooltip-text" inert>
 			<p class="regular-font">
 				Press
 				<kbd>
@@ -38,7 +38,7 @@
 				</kbd>
 				to remove last entry.
 			</p>
-		</span>
+		</div>
 	</div>
 {/snippet}
 
@@ -50,24 +50,38 @@
 		height: fit-content;
 		border-radius: 50%;
 		position: relative;
-		display: inline-block;
+		display: flex;
 		font-size: 0.75rem;
 
 		.tooltip-text {
 			visibility: hidden;
+			display: flex;
 			align-items: center;
-			width: 20rem;
+			justify-content: center;
+			height: 2.5rem;
+			width: 18rem;
 			color: #000;
 			text-align: center;
-			padding: 0.5rem 0;
+			padding: 0 0.5rem;
 			border-radius: var(--border-radius);
 			background-color: var(--pastel-purple);
-			border: 1px solid var(--purple);
+			opacity: 0.9;
 
 			position: absolute;
-			top: 1rem;
-			right: 0.5rem;
+			top: -122%;
+			right: 1.7rem;
 			z-index: 1;
+
+			&::after {
+				content: "";
+				border-width: 10px;
+				border-style: solid;
+				border-color: transparent;
+				border-left: 15px solid var(--pastel-purple);
+
+				position: absolute;
+				transform: translate(9.7rem, 0px);
+			}
 		}
 
 		kbd > kbd {
@@ -87,7 +101,7 @@
 	}
 
 	.tooltip:hover {
-		color: red;
+
 		.tooltip-text {
 			visibility: visible;
 		}
