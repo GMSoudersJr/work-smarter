@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Icon as IconType, InfoIcon } from 'lucide-svelte';
+	import { Icon as IconType, InfoIcon, KeyboardIcon } from 'lucide-svelte';
 
 	type TooltipInfo = {
 		title: string;
@@ -61,7 +61,7 @@
 			text-align: center;
 			padding: 0.5rem 0;
 			border-radius: var(--border-radius);
-			background-color: #e0f7fa;
+			background-color: var(--pastel-purple);
 			border: 1px solid var(--purple);
 
 			position: absolute;
