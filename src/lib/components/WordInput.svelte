@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { AsteriskIcon, type Icon as IconType } from 'lucide-svelte';
-	import { WordCount, KeyboardShorcutInfoTooltip} from '$lib/components';
+	import { LastWordWidget, KeyboardShorcutInfoTooltip} from '$lib/components';
 	import { capitalize } from '$lib/utils';
 	import type {TWord} from '$lib/types';
 
@@ -50,6 +50,7 @@
 	let { entries = $bindable() }: Props = $props();
 	let uid = entries.length + 1;
 	let wordCount = $derived(entries.length);
+	let lastWord = $derived(entries.at(-1)?.word);
 
 	const validInput = /^\s*[\p{L}\p{N}'-~]+(?:\s+[\p{L}\p{N}'-~]+)*\s*$/u;
 
@@ -100,7 +101,7 @@
 	<KeyboardShorcutInfoTooltip />
 	</div>
 	<input id="word-input" class="input regular-font" type="text" onkeydown={handleKeydown} />
-	<WordCount {wordCount} />
+	<LastWordWidget {wordCount} {lastWord}/>
 </div>
 
 <style>

@@ -51,7 +51,7 @@
 		border-radius: 50%;
 		position: relative;
 		display: inline-block;
-		font-size: 0.8rem;
+		font-size: 0.75rem;
 
 		.tooltip-text {
 			visibility: hidden;
