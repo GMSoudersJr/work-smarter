@@ -93,6 +93,10 @@
 			color: var(--copied-color);
 		}
 
+		.randomized:has(.copied) {
+			opacity: 0.6;
+		}
+
 	}
 
 	.word-grid {

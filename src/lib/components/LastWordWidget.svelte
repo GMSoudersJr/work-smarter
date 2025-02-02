@@ -31,8 +31,8 @@
 	<Icon {size} {color} {strokeWidth} />
 {/snippet}
 
-{#snippet wordCountSnippet(word: string)}
-	{#key `${word}${wordCount}`}
+{#snippet wordCountSnippet()}
+	{#key wordCount}
 		<p
 			class="regular-font"
 			id="word-count"
@@ -47,7 +47,7 @@
 	{#key `${word}${wordCount}`}
 		<p
 			class="regular-font"
-			id="word-count"
+			id={`${word}${wordCount}`}
 			in:scale={{ easing: bounceOut, duration: 750, start: 0}}
 		>
 			{word}
@@ -57,7 +57,7 @@
 
 <div class="word-count-wrapper regular-font">
 	{@render wordIcon()}
-	{@render wordCountSnippet(lastWord)}
+	{@render wordCountSnippet()}
 	{@render wordSnippet(lastWord)}
 </div>
 
