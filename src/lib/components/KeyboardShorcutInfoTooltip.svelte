@@ -32,11 +32,10 @@
 		<Icon {size} {color} />
 		<div class="tooltip-text" inert>
 			<p class="regular-font">
-				Press
 				<kbd>
 					<kbd>{shift}</kbd> + <kbd>{backspace}</kbd>
 				</kbd>
-				to remove last entry.
+				removes last entry
 			</p>
 		</div>
 	</div>
@@ -59,7 +58,7 @@
 			align-items: center;
 			justify-content: center;
 			height: 2.5rem;
-			width: 18rem;
+			width: 17rem;
 			color: #000;
 			text-align: center;
 			padding: 0 0.5rem;
@@ -80,7 +79,7 @@
 				border-left: 15px solid var(--pastel-purple);
 
 				position: absolute;
-				transform: translate(9.7rem, 0px);
+				transform: translate(9.2rem, 0px);
 			}
 		}
 
