@@ -16,7 +16,6 @@ const ASSETS = [
 
 sw.addEventListener('install', (event) => {
 	
-	sw.skipWaiting();
 	// Create a new cache and add all files to it
 	async function addFilesToCache() {
 		const cache = await caches.open(CACHE);
@@ -84,4 +83,10 @@ sw.addEventListener('fetch', (event) => {
 	}
 
 	event.respondWith(respond());
+});
+
+sw.addEventListener('message', (event) => {
+	if (event.data && event.data.type === 'SKIP_WAITING') {
+		sw.skipWaiting();
+	}
 });

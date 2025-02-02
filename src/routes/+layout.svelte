@@ -1,21 +1,38 @@
 <script lang="ts">
-	import { onNavigate } from '$app/navigation';
+	import { onMount } from 'svelte';
+	import ViewTransition from './navigation.svelte';
 	import '../app.css';
 	import { page } from '$app/state';
 	import {Footer} from '$lib/components';
 
 	let { children } = $props();
 
-	onNavigate((navigation) => {
-		if (!document.startViewTransition) return;
+	let newServiceWorker: ServiceWorker | null;
 
-		return new Promise((resolve) => {
-			document.startViewTransition(async () => {
-				resolve();
-				await navigation.complete;
+	async function detectServiceWorkerUpdate() {
+		const registration = await navigator.serviceWorker.ready;
+
+		registration.addEventListener('updatefound', () => {
+			newServiceWorker = registration.installing;
+
+			newServiceWorker?.addEventListener('statechange', () => {
+				if (newServiceWorker?.state === 'installed') {
+					updateServiceWorker(newServiceWorker);
+				}
 			});
 		});
-	});
+	}
+
+	function updateServiceWorker(newServiceWorker: ServiceWorker) {
+		newServiceWorker?.postMessage({ type: 'SKIP_WAITING' });
+		window.location.reload();
+	}
+
+	onMount(async () => {
+		detectServiceWorkerUpdate();
+	})
+
+
 </script>
 
 <svelte:head>
@@ -33,11 +50,13 @@
 	<meta property="twitter:image" content={page.data.ogImageUrl} />
 </svelte:head>
 
+<ViewTransition />
+
 <div class="layout-grid">
 
 	<header class="header">
 		<h1 class="all-caps-800">
-			<a href="/"> WORK SMARTER </a>
+			<a href="/">WORK SMARTER</a>
 		</h1>
 	</header>
 
