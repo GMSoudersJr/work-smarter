@@ -58,6 +58,7 @@
 		const { key, shiftKey } = event;
 
 		if (shiftKey && key === 'Backspace') {
+			event.preventDefault();
 			entries.pop();
 			return;
 		}
