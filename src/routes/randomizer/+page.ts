@@ -2,7 +2,7 @@ import type { PageLoad } from './$types';
 
 export const load: PageLoad = () => {
 	return {
-		title: 'Randomizer',
+		title: 'Randomizer | Work Smarter',
 		header: 'RANDOMIZER',
 		description: 'Randomize your word list as it is updated',
 		ogImageUrl:
