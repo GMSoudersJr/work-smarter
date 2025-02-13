@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { WordInput, ResetButton, WordList, CaseToggleButton } from '$lib/components';
+	import { WordInput, ResetButton, WordList, CaseToggleButton, CopyAllButton } from '$lib/components';
 	import type { PageProps } from './$types';
 	import type { TWord } from '$lib/types';
 	import { randomizeEntries } from '$lib/utils';
@@ -33,6 +33,7 @@
 				<div class="column-header">
 					<h3 class="all-caps-200">RANDOMIZED</h3>
 					<CaseToggleButton {entries}/>
+					<CopyAllButton {randomizedEntries}/>
 				</div>
 			{/if}
 			<WordList {randomizedEntries} listLocation="randomized" />
@@ -62,7 +63,10 @@
 	}
 
 	.column-header {
-		display: flex;
+		height: 2.5rem;
+		width: 100%;
+		display: grid;
+		grid-template-columns: repeat(2, min-content) 1fr;
 		align-items: center;
 		gap: 0.5rem;
 	}

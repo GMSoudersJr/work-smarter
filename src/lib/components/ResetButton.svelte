@@ -39,12 +39,13 @@
 
 <style>
 	.button {
+		height: 2.5rem;
+		width: 2.5rem;
 		font-size: 1rem;
 		background-color: var(--page-background);
 		color: var(--purple);
-		display: inline-flex;
 		border: none;
-		border-radius: 50%;
+		border-radius: var(--border-radius);
 	}
 	.button:active {
 		transform: rotateZ(-15deg);

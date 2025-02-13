@@ -40,7 +40,7 @@
 		if (capitalize) {
 			entries.forEach(entry => entry.capitalized())
 		} else {
-			entries.forEach(entry => entry.word = entry.word.toLowerCase());
+			entries.forEach(entry => entry.word = entry.word?.toLowerCase());
 		}
 	}
 </script>
@@ -66,12 +66,13 @@
 
 <style>
 	.button {
+		height: 2.5rem;
+		width: 2.5rem;
 		font-size: 1rem;
 		background-color: var(--page-background);
 		color: var(--purple);
-		display: inline-flex;
 		border: none;
-		border-radius: 50%;
+		border-radius: var(--border-radius);
 	}
 
 </style>
