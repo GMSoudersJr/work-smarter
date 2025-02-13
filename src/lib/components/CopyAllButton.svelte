@@ -105,12 +105,12 @@
 	.button {
 		height: 100%;
 		width: 2.5rem;
-		display:flex;
-		justify-content: center;
+		display: grid;
 		align-items: center;
+		justify-items: center;
 		border: none;
-		background-color: var(--page-background);
 		border-radius: var(--border-radius);
+		background-color: var(--page-background);
 		font-size: 1rem;
 		place-self: end;
 		margin-right: 1px;
