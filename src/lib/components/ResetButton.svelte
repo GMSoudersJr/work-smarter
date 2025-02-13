@@ -46,6 +46,9 @@
 		color: var(--purple);
 		border: none;
 		border-radius: var(--border-radius);
+		display: flex;
+		align-items: center;
+		justify-content: center;
 	}
 	.button:active {
 		transform: rotateZ(-15deg);

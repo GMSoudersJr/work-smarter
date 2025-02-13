@@ -73,6 +73,9 @@
 		color: var(--purple);
 		border: none;
 		border-radius: var(--border-radius);
+		display: flex;
+		align-items: center;
+		justify-content: center;
 	}
 
 </style>
