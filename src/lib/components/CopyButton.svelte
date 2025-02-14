@@ -12,8 +12,10 @@
 			entry.isCopied = !entry.isCopied;
 		} else {
 			try {
-				await navigator.clipboard.writeText(entry.word);
-				entry.isCopied = true;
+				if (entry.word !== undefined) {
+					await navigator.clipboard.writeText(entry.word);
+					entry.isCopied = true;
+				}
 			} catch (error) {
 				console.error(error);
 			}
@@ -42,17 +44,19 @@
 
 {#snippet iconizedButton(entry: TWord, iconButton: TIconButton)}
 	{@const {icon: Icon, iconSize: size, iconColor: color, title} = iconButton}
-	<button
-		class="button"
-		title={title(entry.word)}
-		type="button"
-		onclick={handleClick}
-		in:scale
-	>
-		{#key entry.isCopied}
-			<Icon {size} {color} />
-		{/key}
-	</button>
+	{#if entry.word !== undefined}
+		<button
+			class="button"
+			title={title(entry.word)}
+			type="button"
+			onclick={handleClick}
+			in:scale
+		>
+			{#key entry.isCopied}
+				<Icon {size} {color} />
+			{/key}
+		</button>
+	{/if}
 {/snippet}
 
 
