@@ -103,6 +103,7 @@
 
 <style>
 	.button {
+		grid-area: third-button;
 		height: 100%;
 		width: 2.5rem;
 		display: grid;

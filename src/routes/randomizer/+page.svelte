@@ -7,6 +7,9 @@
 	let { data }: PageProps = $props();
 	let entries: TWord[] = $state([]);
 	let randomizedEntries: TWord[] = $derived(randomizeEntries(entries.slice()));
+	function onShuffleClick() {
+		entries = entries.slice();
+	}
 </script>
 
 <div class="page">
@@ -22,7 +25,9 @@
 			{#if entries.length > 0}
 				<div class="column-header">
 					<h3 class="all-caps-200">ORIGINAL</h3>
-					<ResetButton bind:entries />
+					<div class="buttons-container">
+						<ResetButton bind:entries />
+					</div>
 				</div>
 			{/if}
 			<WordList bind:entries listLocation="original"/>
@@ -32,9 +37,11 @@
 			{#if randomizedEntries.length > 0}
 				<div class="column-header">
 					<h3 class="all-caps-200">RANDOMIZED</h3>
-					<CaseToggleButton {entries}/>
-					<ShuffleButton {randomizedEntries}/>
-					<CopyAllButton {randomizedEntries}/>
+					<div class="buttons-container">
+						<CaseToggleButton {entries}/>
+						<ShuffleButton {randomizedEntries} {onShuffleClick} />
+						<CopyAllButton {randomizedEntries}/>
+					</div>
 				</div>
 			{/if}
 			<WordList {randomizedEntries} listLocation="randomized" />
@@ -67,8 +74,15 @@
 		height: 2.5rem;
 		width: 100%;
 		display: grid;
-		grid-template-columns: repeat(3, min-content) 1fr;
+		grid-template-columns: min-content 1fr;
 		align-items: center;
 		gap: 0.5rem;
+
+		.buttons-container {
+			display: grid;
+			grid-template-columns: 2.5rem 1fr 2.5rem;
+			grid-template-areas: "first-button second-button third-button";
+			justify-items: center;
+		}
 	}
 </style>

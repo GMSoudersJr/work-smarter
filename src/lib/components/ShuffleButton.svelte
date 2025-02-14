@@ -1,10 +1,12 @@
 <script lang="ts">
 	import type { TWord, TIconButton} from '$lib/types';
 	import { ShuffleIcon } from 'lucide-svelte';
+	import type {MouseEventHandler} from 'svelte/elements';
 	import {scale} from 'svelte/transition';
 
 	interface Props  {
 		randomizedEntries: TWord[];
+		onShuffleClick: MouseEventHandler<HTMLButtonElement>;
 	}
 
 	const shuffleButton: TIconButton = {
@@ -16,10 +18,8 @@
 	};
 
 
-	let { randomizedEntries }: Props = $props();
+	let { randomizedEntries, onShuffleClick }: Props = $props();
 
-	function handleClick() {
-	}
 </script>
 
 {#snippet iconizedButton(iconButton: TIconButton)}
@@ -28,7 +28,7 @@
 			type="button"
 			class="button"
 			title={title('Shuffle')}
-			onclick={handleClick}
+			onclick={onShuffleClick}
 			in:scale
 		>
 			<Icon {size} {strokeWidth} />
@@ -41,6 +41,7 @@
 
 <style>
 	.button {
+		grid-area: second-button;
 		height: 2.5rem;
 		width: 2.5rem;
 		font-size: 1rem;
@@ -51,6 +52,14 @@
 		display: grid;
 		align-items: center;
 		justify-items: center;
+	}
+
+	.button:active {
+		transform: rotateX(180deg);
+	}
+
+	.button:hover {
+		background-color: #d1d1d1;
 	}
 
 </style>
