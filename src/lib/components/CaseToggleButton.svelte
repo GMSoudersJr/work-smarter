@@ -49,7 +49,7 @@
 	{@const { icon: Icon, iconSize: size, iconStrokeWidth: strokeWidth, title } = iconButton}
 		<button
 			type="button"
-			class="button"
+			class="button column-header-button"
 			{title}
 			onclick={handleClick}
 			in:scale
@@ -63,19 +63,3 @@
 {:else}
 	{@render iconizedButton(capitalizeToggleButton)}
 {/if}
-
-<style>
-	.button {
-		height: 2.5rem;
-		width: 2.5rem;
-		font-size: 1rem;
-		background-color: var(--page-background);
-		color: var(--purple);
-		border: none;
-		border-radius: var(--border-radius);
-		display: grid;
-		align-items: center;
-		justify-items: center;
-	}
-
-</style>
