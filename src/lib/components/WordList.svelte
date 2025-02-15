@@ -66,6 +66,11 @@
 			border-radius: var(--border-radius);
 			margin: 0.75rem 0;
 			box-shadow: var(--box-shadow);
+			transition:
+				opacity 0.5s ease,
+				text-decoration 0.5s ease,
+				box-shadow 0.5s ease;
+
 		}
 
 		.randomized {
@@ -112,8 +117,8 @@
 			border-top-left-radius: var(--border-radius);
 			border-bottom-left-radius: var(--border-radius);
 			background-color: #d1d1d1;
-			display: flex;
-			justify-content: center;
+			display: grid;
+			justify-items: center;
 			align-items: center;
 		}
 	}

@@ -52,9 +52,7 @@
 			onclick={handleClick}
 			in:scale
 		>
-			{#key entry.isCopied}
-				<Icon {size} {color} />
-			{/key}
+			<Icon {size} {color} />
 		</button>
 	{/if}
 {/snippet}
@@ -69,11 +67,11 @@
 <style>
 	.button {
 		height: 100%;
-		display: flex;
+		display: grid;
 		border: none;
 		border-top-right-radius: var(--border-radius);
 		border-bottom-right-radius: var(--border-radius);
-		justify-content: center;
+		justify-items: center;
 		align-items: center;
 		font-size: 1rem;
 	}
