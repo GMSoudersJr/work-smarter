@@ -86,19 +86,17 @@
 		onclick={handleClick}
 		in:scale
 	>
-		{#key numberOfWords}
-			<Icon {size} {color} {strokeWidth}/>
-		{/key}
+		<Icon {size} {color} {strokeWidth}/>
 	</button>
 {/snippet}
 
 
-{#if randomizedEntries.length > 1}
-	{#if copiedAll}
-		{@render iconizedButton(randomizedEntries.length, clipboardCopyIconButton)}
-	{:else}
+{#if randomizedEntries.length > 1 && !copiedAll}
 		{@render iconizedButton(randomizedEntries.length, copyAllIconButton)}
-	{/if}
+{/if}
+
+{#if randomizedEntries.length > 1 && copiedAll}
+		{@render iconizedButton(randomizedEntries.length, clipboardCopyIconButton)}
 {/if}
 
 <style>
