@@ -31,26 +31,19 @@
 {#key resetButton}
 	{#if entries.length > 1}
 		{@const Icon = resetButton.icon}
-		<button class="button" title={resetButton.title} onclick={handleClick}>
+		<button
+			class="button column-header-button"
+			title={resetButton.title}
+			onclick={handleClick}
+		>
 			<Icon {size} {strokeWidth} />
 		</button>
 	{/if}
 {/key}
 
 <style>
-	.button {
-		height: 2.5rem;
-		width: 2.5rem;
-		font-size: 1rem;
-		background-color: var(--page-background);
-		color: var(--purple);
-		border: none;
-		border-radius: var(--border-radius);
-		display: grid;
-		align-items: center;
-		justify-items: center;
-	}
 	.button:active {
 		transform: rotateZ(-15deg);
 	}
+
 </style>

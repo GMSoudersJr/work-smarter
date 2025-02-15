@@ -46,7 +46,9 @@
 		align-items: center;
 		font-size: 1rem;
 	}
-	.button:hover {
+
+	.button:hover,
+	.button:focus {
 		color: var(--purple);
 	}
 </style>

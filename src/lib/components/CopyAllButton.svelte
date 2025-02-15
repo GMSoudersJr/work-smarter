@@ -80,7 +80,7 @@
 {#snippet iconizedButton(numberOfWords: number, iconButton: TIconButton)}
 	{@const {icon: Icon, iconSize: size, iconColor: color, title, iconStrokeWidth: strokeWidth} = iconButton}
 	<button
-		class="button"
+		class="button column-header-button"
 		title={title(numberOfWords.toString())}
 		type="button"
 		onclick={handleClick}
@@ -103,21 +103,8 @@
 
 <style>
 	.button {
-		height: 100%;
-		width: 2.5rem;
-		display: grid;
-		align-items: center;
-		justify-items: center;
-		border: none;
-		border-radius: var(--border-radius);
-		background-color: var(--page-background);
-		font-size: 1rem;
-		place-self: end;
+		grid-area: third-button;
 		margin-right: 1px;
-		color: var(--purple);
 	}
 
-	.button:hover {
-		color: var(--purple);
-	}
 </style>

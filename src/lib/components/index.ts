@@ -11,3 +11,4 @@ export { default as WordList } from './WordList.svelte';
 export { default as IndexDifferenceWidget } from './IndexDifferenceWidget.svelte';
 export { default as KeyboardShorcutInfoTooltip } from './KeyboardShorcutInfoTooltip.svelte';
 export { default as CopyAllButton } from './CopyAllButton.svelte';
+export { default as ShuffleButton } from './ShuffleButton.svelte';
